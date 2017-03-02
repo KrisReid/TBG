@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { PlayerService } from './services/player.service';
+import { GameService } from './services/game.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PlayerService } from './services/player.service';
     HttpModule
   ],
   providers: [
-    PlayerService
+    PlayerService,
+    GameService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
