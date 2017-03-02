@@ -1,9 +1,9 @@
 let mongoose = require('mongoose');
 
 let gameSchema = mongoose.Schema({
-    redTeam: String,
-    yellowTeam: String,
-    reserves: String,
+    redTeam: Array,
+    yellowTeam: Array,
+    reserves: Array,
     date: String,
     location: String,
     startTime: String,

@@ -24,7 +24,7 @@ mongoose.Promise = global.Promise;
 
 // Models
 var Player = require('./player.model.js');
-// var Game = require('./game.model.js');
+var Game = require('./game.model.js');
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -39,12 +39,12 @@ db.once('open', function() {
   });
 
   //Game API Calls
-  // app.get('/games', function(req, res) {
-  //   Game.find({}, function(err, docs) {
-  //     if(err) return console.error(err);
-  //     res.json(docs);
-  //   });
-  // });
+  app.get('/games', function(req, res) {
+    Game.find({}, function(err, docs) {
+      if(err) return console.error(err);
+      res.json(docs);
+    });
+  });
 
   // all other routes are handled by Angular
   app.get('/*', function(req, res) {
