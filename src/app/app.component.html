@@ -1,0 +1,50 @@
+<h1>Trial of new code - connecting to Mongo DB!</h1>
+
+<div class="card">
+  <h4 class="card-header">Current Players ({{players.length}})</h4>
+  <div class="card-block">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>Full Name</th>
+          <th>email</th>
+          <th>password</th>
+          <th>debt</th>
+          <th>terms</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let player of players">
+          <td>{{player.fullName}}</td>
+          <td>{{player.email}}</td>
+          <td>{{player.password}}</td>
+          <td>{{player.debt}}</td>
+          <td>{{player.terms}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h1>Games</h1>
+  <div class="card-block">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>Red Team</th>
+          <th>Yellow Team</th>
+          <th>Reserves</th>
+          <th>Date</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let game of games">
+          <td>{{game.redTeam}}</td>
+          <td>{{game.YellowTeam}}</td>
+          <td>{{game.reserves}}</td>
+          <td>{{game.date}}</td>
+          <td>{{game.location}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
