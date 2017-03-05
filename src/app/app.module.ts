@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 import { PlayerService } from './services/player.service';
 import { GameService } from './services/game.service';
 
+import {LoginModule} from './login/login.module';
+
+import {routingModule} from './app.routes';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -14,7 +18,9 @@ import { GameService } from './services/game.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    LoginModule,
+    routingModule
   ],
   providers: [
     PlayerService,
