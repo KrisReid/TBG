@@ -1,0 +1,16 @@
+header {
+  background-color: #999;
+  /*background: url('http://static.wixstatic.com/media/054cbc_736659f4f91b4b35955ad937f1fa568a.jpg');*/
+  background: url('http://shareyourwallpapers.com/upload/wallpaper/sports/football/football_9acc5483.jpg');
+  background-size: 100%;
+  background-position: center;
+  background-repeat:no-repeat;
+  padding: 14% 0% 14% 0%;
+}
+.row {
+  padding-top: 15px;
+}
+
+#loginButtons {
+  padding-top: 10px;
+}

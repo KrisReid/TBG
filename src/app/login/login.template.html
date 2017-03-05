@@ -1,0 +1,30 @@
+<header class="hidden-xs"></header>
+
+<div class="row">
+  <div class="col-sm-6">
+    <label>Email Address</label>
+    <input #emailAddress class="form-control input-md" id="email"
+    placeholder="Email Address"
+    (keyup)="email=emailAddress.value"
+    />
+  </div>
+  <div class="col-sm-6">
+    <label>Password</label>
+    <input #password class="form-control input-md" type="password" id="password"
+    placeholder="Password"
+    />
+  </div>
+
+  <div class="col-sm-12" id="loginButtons">
+    <button class="btn btn-success btn"
+      [disabled]="!email">
+      Sign In
+    </button>
+
+    <button class="btn btn-info btn"
+      (click)="Signup()">
+      Sign Up
+    </button>
+  </div>
+
+</div>
