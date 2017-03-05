@@ -8,6 +8,7 @@ import { PlayerService } from './services/player.service';
 import { GameService } from './services/game.service';
 
 import {LoginModule} from './login/login.module';
+import {SignupModule} from './signup/signup.module';
 
 import {routingModule} from './app.routes';
 
@@ -20,6 +21,7 @@ import {routingModule} from './app.routes';
     FormsModule,
     HttpModule,
     LoginModule,
+    SignupModule,
     routingModule
   ],
   providers: [
