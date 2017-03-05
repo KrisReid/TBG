@@ -38,6 +38,14 @@ db.once('open', function() {
     });
   });
 
+  app.post('/players', function(req, res) {
+    var obj = new Player(req.body);
+    obj.save(function(err, obj) {
+      if(err) return console.error(err);
+      res.status(200).json(obj);
+    });
+  });
+
   //Game API Calls
   app.get('/games', function(req, res) {
     Game.find({}, function(err, docs) {

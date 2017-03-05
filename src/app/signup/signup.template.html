@@ -1,0 +1,136 @@
+<h4 class="card-header">Add new player</h4>
+<div class="card-block">
+  <form *ngIf="!submitted" class="form-inline" [formGroup]="addPlayerForm" (ngSubmit)="SignUp()" style="text-align:center">
+    <div class="form-group">
+        <input class="form-control" type="text" name="fullName" formControlName="fullName" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="text" name="email" formControlName="email" placeholder="email">
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="text" name="password" formControlName="password" placeholder="password" min="0">
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!addPlayerForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+  </form>
+</div>
+
+  <!-- <form *ngIf="!submitted" (ngSubmit)="SignUp()" [formGroup]="addPlayerForm" >
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <div class="form-group"
+          [class.has-error]="isInvalid('fullName')">
+          <label for="name">Full Name</label>
+          <input class="form-control" id="fullName" formControlName="fullName" placeholder="Full Name">
+          <span *ngIf="isInvalid('fullName')" class="help-block">
+            {{getValidationMessage('fullName')}}
+          </span>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group"
+          [class.has-error]="isInvalid('email')">
+          <label for="email">Email Address</label>
+          <input class="form-control" id="email" formControlName="email" placeholder="Email Address">
+
+          <span *ngIf="isInvalid('email')" class="help-block">
+            {{getValidationMessage('email')}}
+          </span>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="form-group"
+          [class.has-error]="isInvalid('password')">
+          <label for="password">Password</label>
+          <input class="form-control" id="password" formControlName="password" type="password" placeholder="Password">
+          <span *ngIf="isInvalid('password')" class="help-block">
+            {{getValidationMessage('password')}}
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Location, Time and Dates
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <p><b>Location: </b>{{location}}</p>
+            <p><b>Time: </b>{{time}}</p>
+            <p><b>Dates: </b>{{dates}}</p>
+            <i>Subject to change each week. You will be notified if different when applying fora game each week</i>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Collapsible Group Item #2
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Collapsible Group Item #3
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"
+          formControlName="terms">
+        Agree to Terms and Conditions
+      </label>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="addPlayerForm.invalid">
+      Submit
+    </button>
+
+    <button class="btn btn-danger" (click)="Cancel()">
+      Cancel
+    </button>
+
+  </form> -->
+
+  <div *ngIf="submitted">
+    <h1>DONE!</h1>
+    <!-- <h2>{{submittedSignup.fullName}}, Thanks for Registering with TNF</h2>
+    <p>You have registered the email address: {{submittedSignup.email}} with a password of {{submittedSignup.password}}. Please remember the credentials for login purposes</p>
+
+    <pre>{{submittedSignup | json}}</pre> -->
+
+    <button class="btn btn-primary"
+      (click)="SignIn()">
+      Login
+    </button>
+
+  </div>
