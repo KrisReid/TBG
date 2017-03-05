@@ -1,6 +1,6 @@
-<h4 class="card-header">Add new player</h4>
+<!-- <h4 class="card-header">Sign up</h4>
 <div class="card-block">
-  <form *ngIf="!submitted" class="form-inline" [formGroup]="addPlayerForm" (ngSubmit)="SignUp()" style="text-align:center">
+  <form class="form-inline" [formGroup]="addPlayerForm" (ngSubmit)="SignUp()" style="text-align:center">
     <div class="form-group">
         <input class="form-control" type="text" name="fullName" formControlName="fullName" placeholder="Name">
     </div>
@@ -13,43 +13,44 @@
 
     <button class="btn btn-primary" type="submit" [disabled]="!addPlayerForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
   </form>
-</div>
+</div> -->
 
-  <!-- <form *ngIf="!submitted" (ngSubmit)="SignUp()" [formGroup]="addPlayerForm" >
+<!-- *ngIf="!submitted" -->
+
+  <form *ngIf="!submitted" (ngSubmit)="SignUp()" [formGroup]="addPlayerForm" >
 
     <div class="row">
 
       <div class="col-sm-6">
-        <div class="form-group"
-          [class.has-error]="isInvalid('fullName')">
+        <div class="form-group">
+          <!-- [class.has-error]="isInvalid('fullName')"> -->
           <label for="name">Full Name</label>
           <input class="form-control" id="fullName" formControlName="fullName" placeholder="Full Name">
-          <span *ngIf="isInvalid('fullName')" class="help-block">
+          <!-- <span *ngIf="isInvalid('fullName')" class="help-block">
             {{getValidationMessage('fullName')}}
-          </span>
+          </span> -->
         </div>
       </div>
 
       <div class="col-sm-6">
-        <div class="form-group"
-          [class.has-error]="isInvalid('email')">
+        <div class="form-group">
+          <!-- [class.has-error]="isInvalid('email')"> -->
           <label for="email">Email Address</label>
           <input class="form-control" id="email" formControlName="email" placeholder="Email Address">
-
-          <span *ngIf="isInvalid('email')" class="help-block">
+          <!-- <span *ngIf="isInvalid('email')" class="help-block">
             {{getValidationMessage('email')}}
-          </span>
+          </span> -->
         </div>
       </div>
 
       <div class="col-sm-12">
-        <div class="form-group"
-          [class.has-error]="isInvalid('password')">
+        <div class="form-group">
+          <!-- [class.has-error]="isInvalid('password')"> -->
           <label for="password">Password</label>
           <input class="form-control" id="password" formControlName="password" type="password" placeholder="Password">
-          <span *ngIf="isInvalid('password')" class="help-block">
+          <!-- <span *ngIf="isInvalid('password')" class="help-block">
             {{getValidationMessage('password')}}
-          </span>
+          </span> -->
         </div>
       </div>
 
@@ -119,14 +120,14 @@
       Cancel
     </button>
 
-  </form> -->
+  </form>
 
   <div *ngIf="submitted">
-    <h1>DONE!</h1>
-    <!-- <h2>{{submittedSignup.fullName}}, Thanks for Registering with TNF</h2>
-    <p>You have registered the email address: {{submittedSignup.email}} with a password of {{submittedSignup.password}}. Please remember the credentials for login purposes</p>
 
-    <pre>{{submittedSignup | json}}</pre> -->
+    <h2>{{addPlayerForm.value.fullName}}, Thanks for Registering with TNF</h2>
+    <p>You have registered the email address: {{addPlayerForm.value.email}} with a password of {{addPlayerForm.value.password}}. Please remember the credentials for login purposes</p>
+
+    <!-- <pre>{{addPlayerForm.value | json}}</pre> -->
 
     <button class="btn btn-primary"
       (click)="SignIn()">

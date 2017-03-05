@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Http } from '@angular/http';
-import {FormGroup, FormControl, Validators} from '@angular/forms'
-import {AbstractControl, FormBuilder} from '@angular/forms'
+// import { Http } from '@angular/http';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
 
 import {PlayerService} from '../services/player.service';
@@ -9,8 +9,8 @@ import {PlayerService} from '../services/player.service';
 
 @Component({
   selector: 'signup',
-  templateUrl: './signup.template.html',
-  styleUrls: ['./signup.styles.css']
+  templateUrl: 'signup.template.html',
+  styleUrls: ['signup.styles.css']
 })
 export class SignupComponent implements OnInit {
 
@@ -31,10 +31,10 @@ export class SignupComponent implements OnInit {
   email = new FormControl('', Validators.required);
   password = new FormControl('', Validators.required);
   // debt = new FormControl('', Validators.required);
-  // terms = new FormControl('', Validators.required);
+  terms = new FormControl('', Validators.required);
 
   constructor(
-    private http: Http,
+    // private http: Http,
     private router: Router,
     private formBuilder: FormBuilder,
     private playerService: PlayerService) { }
@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
       fullName: this.fullName,
       email: this.email,
       password: this.password,
-      terms: true,
+      terms: this.terms,
       debt: 0
     });
 
