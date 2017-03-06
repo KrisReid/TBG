@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private playerService: PlayerService) { }
+    private playerService: PlayerService) {}
 
   ngOnInit() {
 
