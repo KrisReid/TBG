@@ -22,35 +22,37 @@
     <div class="row">
 
       <div class="col-sm-6">
-        <div class="form-group">
-          <!-- [class.has-error]="isInvalid('fullName')"> -->
+        <div class="form-group"
+          [class.has-error]="isInvalid('fullName')">
           <label for="name">Full Name</label>
           <input class="form-control" id="fullName" formControlName="fullName" placeholder="Full Name">
-          <!-- <span *ngIf="isInvalid('fullName')" class="help-block">
-            {{getValidationMessage('fullName')}}
-          </span> -->
+          <span *ngIf="isInvalid('fullName')" class="help-block">
+            <p>
+              {{getValidationMessage('fullName')}}
+            </p>
+          </span>
         </div>
       </div>
 
       <div class="col-sm-6">
-        <div class="form-group">
-          <!-- [class.has-error]="isInvalid('email')"> -->
+        <div class="form-group"
+          [class.has-error]="isInvalid('email')">
           <label for="email">Email Address</label>
           <input class="form-control" id="email" formControlName="email" placeholder="Email Address">
-          <!-- <span *ngIf="isInvalid('email')" class="help-block">
+          <span *ngIf="isInvalid('email')" class="help-block">
             {{getValidationMessage('email')}}
-          </span> -->
+          </span>
         </div>
       </div>
 
       <div class="col-sm-12">
-        <div class="form-group">
-          <!-- [class.has-error]="isInvalid('password')"> -->
+        <div class="form-group"
+          [class.has-error]="isInvalid('password')">
           <label for="password">Password</label>
           <input class="form-control" id="password" formControlName="password" type="password" placeholder="Password">
-          <!-- <span *ngIf="isInvalid('password')" class="help-block">
+          <span *ngIf="isInvalid('password')" class="help-block">
             {{getValidationMessage('password')}}
-          </span> -->
+          </span>
         </div>
       </div>
 
