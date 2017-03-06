@@ -18,4 +18,6 @@ const routes: Routes = [
 
 ];
 
+console.log('Within Routes');
+
 export const routingModule = RouterModule.forRoot(routes);

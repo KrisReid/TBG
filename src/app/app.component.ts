@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 // import {GameService} from './services/game.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app',
   templateUrl: './app.template.html',
   styleUrls: ['./app.component.css']
 })

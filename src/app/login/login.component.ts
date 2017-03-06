@@ -12,6 +12,7 @@ export class LoginComponent {
     private router: Router) { }
 
   Signup() {
+    console.log('Signup button hit')
     this.router.navigate(['/signup']);
   }
 
