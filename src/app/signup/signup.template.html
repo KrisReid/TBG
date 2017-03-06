@@ -1,22 +1,3 @@
-<!-- <h4 class="card-header">Sign up</h4>
-<div class="card-block">
-  <form class="form-inline" [formGroup]="addPlayerForm" (ngSubmit)="SignUp()" style="text-align:center">
-    <div class="form-group">
-        <input class="form-control" type="text" name="fullName" formControlName="fullName" placeholder="Name">
-    </div>
-    <div class="form-group">
-      <input class="form-control" type="text" name="email" formControlName="email" placeholder="email">
-    </div>
-    <div class="form-group">
-      <input class="form-control" type="text" name="password" formControlName="password" placeholder="password" min="0">
-    </div>
-
-    <button class="btn btn-primary" type="submit" [disabled]="!addPlayerForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
-  </form>
-</div> -->
-
-<!-- *ngIf="!submitted" -->
-
   <form *ngIf="!submitted" (ngSubmit)="SignUp()" [formGroup]="addPlayerForm" >
 
     <div class="row">
@@ -71,8 +52,8 @@
           <div class="panel-body">
             <p><b>Location: </b>{{location}}</p>
             <p><b>Time: </b>{{time}}</p>
-            <p><b>Dates: </b>{{dates}}</p>
-            <i>Subject to change each week. You will be notified if different when applying fora game each week</i>
+            <p><b>Date: </b>{{dates}}</p>
+            <i>Subject to change each week. You will be notified if different when applying for a game each week</i>
           </div>
         </div>
       </div>
@@ -106,13 +87,27 @@
       </div>
     </div>
 
-    <div class="checkbox">
+    <div class="checkbox" [class.has-error]="isInvalid('terms')">
       <label>
         <input type="checkbox"
           formControlName="terms">
         Agree to Terms and Conditions
       </label>
+      <span *ngIf="isInvalid('terms')" class="help-block">
+        <p>Please accept the terms</p>
+      </span>
     </div>
+
+    <!-- <div class="col-sm-12">
+      <div class="form-group"
+        [class.has-error]="isInvalid('password')">
+        <label for="password">Password</label>
+        <input class="form-control" id="password" formControlName="password" type="password" placeholder="Password">
+        <span *ngIf="isInvalid('password')" class="help-block">
+          {{getValidationMessage('password')}}
+        </span>
+      </div>
+    </div> -->
 
     <button class="btn btn-primary" type="submit" [disabled]="addPlayerForm.invalid">
       Submit

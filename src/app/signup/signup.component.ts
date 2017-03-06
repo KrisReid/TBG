@@ -1,11 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-// import { Http } from '@angular/http';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {AbstractControl, FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
 
 import {PlayerService} from '../services/player.service';
-
 
 @Component({
   selector: 'signup',
@@ -19,10 +17,7 @@ export class SignupComponent implements OnInit {
   dates = 'Tuesdays'
 
   players = [];
-  // isLoading = true;
-
   player = {};
-  // isEditing = false;
 
   submitted = false;
 
@@ -47,7 +42,7 @@ export class SignupComponent implements OnInit {
       password: [this.password,
         [Validators.required, Validators.pattern("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$")]],
       terms: [this.terms,
-        [Validators.required, this.mustBeChecked]],
+        [this.mustBeChecked]],
       debt: 0,
     });
 
@@ -98,13 +93,8 @@ export class SignupComponent implements OnInit {
     password: {
       required: 'Please specify your password.',
       pattern: 'Password contain at least one cpaital letter, one number and be greater than 6 characters long.'
-    },
-    terms: {
-      required: 'Please accept the terms'
     }
   };
-
-
 
   SignUp() {
     console.log(this.addPlayerForm.value);
@@ -116,9 +106,7 @@ export class SignupComponent implements OnInit {
       },
       error => console.log(error)
     );
-
   }
-
 
   Cancel() {
     this.router.navigate(['/login']);
