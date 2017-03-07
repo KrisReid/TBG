@@ -1,0 +1,35 @@
+<div class="row" id="search">
+  <div class="col-sm-4 col-sm-offset-8">
+    <input #searchBox class="form-control input-sm"
+      placeholder="Search by player"
+      (keyup)="0" />
+  </div>
+</div>
+
+  <div class="col-sm-12" class="row" *ngFor="let player of players | contentFilter:searchBox.value; let o=odd; let e=even; let f=first; let l=last"
+    [ngClass]="{oddRow : o, evenRow : e}"
+    [class.topRow]="f"
+    [class.bottomRow]="l"
+    >
+
+    <div class="col-xs-5 col-sm-3">
+      <p>{{player.fullName}}</p>
+    </div>
+
+    <div class="col-xs-3 col-sm-3">
+      <p>{{player.debt | currency: 'GBP' : 'true'}}</p>
+    </div>
+
+    <div class="col-xs-3 col-sm-3">
+      <input #creditInput class="form-control input-sm" type="currency"
+      placeholder="5"
+      (keyup)="credit=creditInput.value"/>
+    </div>
+
+    <button type="button" class="col-xs-1 col-sm-3 btn btn-primary"
+      (click)="Update(player)">
+      <!-- <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> -->
+      <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+    </button>
+
+  </div>

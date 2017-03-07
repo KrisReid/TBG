@@ -9,6 +9,7 @@ import { GameService } from './services/game.service';
 
 import {LoginModule} from './login/login.module';
 import {SignupModule} from './signup/signup.module';
+import {CreditDebitModule} from './credit-debit/credit-debit.module';
 
 import {routingModule} from './app.routes';
 
@@ -22,6 +23,7 @@ import {routingModule} from './app.routes';
     HttpModule,
     LoginModule,
     SignupModule,
+    CreditDebitModule,
     routingModule
   ],
   providers: [

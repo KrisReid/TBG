@@ -46,6 +46,13 @@ db.once('open', function() {
     });
   });
 
+  app.put('/player/:id', function(req, res) {
+    Player.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
+      if(err) return console.error(err);
+      res.sendStatus(200);
+    })
+  });
+
   //Game API Calls
   app.get('/games', function(req, res) {
     Game.find({}, function(err, docs) {

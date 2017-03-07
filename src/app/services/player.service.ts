@@ -21,4 +21,8 @@ export class PlayerService {
     return this.http.post('/players', JSON.stringify(player), this.options);
   }
 
+  updatePlayer(player): Observable<any> {
+    return this.http.put(`/player/${player._id}`, JSON.stringify(player), this.options);
+  }
+
 }
