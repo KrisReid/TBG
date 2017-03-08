@@ -61,6 +61,14 @@ db.once('open', function() {
     });
   });
 
+  app.post('/games', function(req, res) {
+    var obj = new Game(req.body);
+    obj.save(function(err, obj) {
+      if(err) return console.error(err);
+      res.status(200).json(obj);
+    });
+  });
+
   // all other routes are handled by Angular
   app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname,'/../../dist/index.html'));

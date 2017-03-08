@@ -1,0 +1,106 @@
+<form
+  novalidate
+  (ngSubmit)="Create()"
+  #entryForm="ngForm">
+
+  <div class="row">
+
+    <div class="col-sm-12">
+      <div class="form-group"
+        [class.has-error]="dateCtrl.invalid">
+        <label for="date">Date</label>
+        <input class="form-control" id="date" type="date"
+          #dateCtrl="ngModel"
+          [(ngModel)]="game.date" name="date"
+          required>
+        <span *ngIf="dateCtrl.invalid" class="help-block">
+          Please specify a date.
+        </span>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"
+              [(ngModel)]="game.kris" name="kris">
+            Include Kris?
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"
+              [(ngModel)]="game.jamie" name="jamie">
+            Include Jamie?
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <div class="form-group"
+          [class.has-error]="locationCtrl.invalid">
+          <label for="location">Location</label>
+          <input class="form-control" id="location"
+            #locationCtrl="ngModel"
+            [(ngModel)]="game.location" name="location"
+            required
+            maxlength="40"
+            placeholder="Better (Gosling Sports Park)">
+          <span *ngIf="locationCtrl.invalid" class="help-block">
+            Please specify a location
+          </span>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="form-group"
+          [class.has-error]="startCtrl.invalid">
+          <label for="startTime">Start Time</label>
+          <input class="form-control" id="startTime"
+            #startCtrl="ngModel"
+            [(ngModel)]="game.startTime" name="startTime"
+            required
+            maxlength="5"
+            placeholder="18:00">
+          <span *ngIf="startCtrl.invalid" class="help-block">
+            Please specify a start time
+          </span>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="form-group"
+          [class.has-error]="finishCtrl.invalid">
+          <label for="finishTime">Start Time</label>
+          <input class="form-control" id="finishTime"
+            #finishCtrl="ngModel"
+            [(ngModel)]="game.finishTime" name="finishTime"
+            required
+            maxlength="5"
+            placeholder="19:00">
+          <span *ngIf="finishCtrl.invalid" class="help-block">
+            Please specify a finish time
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+  <button class="btn btn-primary" type="submit"
+    [disabled]="entryForm.invalid">
+    <!-- (click)="Create()"> -->
+    Create Game
+  </button>
+
+</form>

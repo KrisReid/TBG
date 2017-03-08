@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { PlayerService } from './services/player.service';
-import { GameService } from './services/game.service';
 
 import {LoginModule} from './login/login.module';
 import {SignupModule} from './signup/signup.module';
 import {CreditDebitModule} from './credit-debit/credit-debit.module';
+import {CreateGameModule} from './create-game/create-game.module';
+
+import { PlayerService } from './services/player.service';
+import { GameService } from './services/game.service';
 
 import {routingModule} from './app.routes';
 
@@ -24,6 +26,7 @@ import {routingModule} from './app.routes';
     LoginModule,
     SignupModule,
     CreditDebitModule,
+    CreateGameModule,
     routingModule
   ],
   providers: [
