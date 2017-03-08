@@ -5,7 +5,7 @@ import {SignupComponent} from './signup/signup.component';
 import {CreateGameComponent} from './create-game/create-game.component';
 import {CreditDebitComponent} from './credit-debit/credit-debit.component';
 // import {GameViewComponent} from './game-view/game-view.component';
-// import {PlayComponent} from './play/play.component';
+import {PlayComponent} from './play/play.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'create', component: CreateGameComponent},
   { path: 'creditdebit', component: CreditDebitComponent},
   // { path: 'games', component: GameViewComponent},
-  // { path: 'play', component: PlayComponent},
+  { path: 'play', component: PlayComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full'}
 
 ];
