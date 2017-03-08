@@ -16,4 +16,9 @@ export class GameService {
     return this.http.get('/games').map(res => res.json());
   }
 
+  postGame(game): Observable<any> {
+    console.log("POST PLAYER MEYTHOD: " + game);
+    return this.http.post('/games', JSON.stringify(game), this.options);
+  }
+
 }
