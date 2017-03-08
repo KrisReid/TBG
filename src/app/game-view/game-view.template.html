@@ -1,0 +1,11 @@
+<div class="row" *ngFor="let game of games">
+    <div class="col-sm-3">
+        <h3>Game #{{game._id}}</h3>
+        <p>Red Team: {{game.redTeam}}</p>
+        <p>Yellow Team: {{game.yellowTeam}}</p>
+        <p>Date: {{game.date | date: 'dd MMMM yyyy'}}</p>
+        <p>Location: {{game.location}}</p>
+        <p>Start Time: {{game.startTime}}</p>
+        <p>Finish Time: {{game.finishTime}}</p>
+    </div>
+</div>
