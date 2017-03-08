@@ -32,11 +32,10 @@ export class CreditDebitComponent {
   }
 
   Update(player) {
-    console.log(typeof player.debt + "--Player Debt--" + player.debt);
-    let cred = Number(player.credit);
-    console.log(typeof cred + "--Cred--" + cred);
-    console.log(typeof this.credit + "--this.credit--" + this.credit);
-    // player.debt += cred;
+    let credit = this.credit
+    let cred = Number(credit);
+    player.debt += cred;
+    
     console.log(player);
 
     this.playerService.updatePlayer(player).subscribe(
