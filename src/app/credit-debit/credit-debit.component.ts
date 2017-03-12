@@ -35,7 +35,7 @@ export class CreditDebitComponent {
     let credit = this.credit
     let cred = Number(credit);
     player.debt += cred;
-    
+
     console.log(player);
 
     this.playerService.updatePlayer(player).subscribe(
@@ -45,5 +45,5 @@ export class CreditDebitComponent {
       error => console.log(error)
     );
   }
-
+  
 }

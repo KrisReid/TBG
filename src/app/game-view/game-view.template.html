@@ -1,11 +1,24 @@
-<div class="row" *ngFor="let game of games">
-    <div class="col-sm-3">
-        <h3>Game #{{game._id}}</h3>
-        <p>Red Team: {{game.redTeam}}</p>
-        <p>Yellow Team: {{game.yellowTeam}}</p>
-        <p>Date: {{game.date | date: 'dd MMMM yyyy'}}</p>
+<div *ngFor="let game of games">
+    <div class="col-sm-6">
+        <!-- <h3>Game #{{game._id}}</h3> -->
+        <h3>{{game.date | date: 'dd MMMM yyyy'}}</h3>
         <p>Location: {{game.location}}</p>
         <p>Start Time: {{game.startTime}}</p>
         <p>Finish Time: {{game.finishTime}}</p>
+        <h4>Red Team</h4>
+        <div *ngFor="let reds of game.redTeam">
+          <p>{{reds.fullName}}</p>
+        </div>
+        <h4>Yellow Team</h4>
+        <div *ngFor="let yellows of game.yellowTeam">
+          <p>{{yellows.fullName}}</p>
+        </div>
+        <h4>Reserves</h4>
+        <div *ngFor="let reserves of game.reserves">
+          <p>{{reserves.fullName}}</p>
+        </div>
+        <!-- <p>Red Team: {{game.redTeam}}</p> -->
+        <!-- <p>Yellow Team: {{game.yellowTeam}}</p> -->
+        
     </div>
-</div>
+  </div>
