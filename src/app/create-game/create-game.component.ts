@@ -28,10 +28,16 @@ export class CreateGameComponent {
 
   Create(){
     if(this.game.kris == true){
-      this.game.redTeam.push('Kris Reid');
+      this.game.redTeam.push({
+        "_id" : "58ab2885a757ea16ac3eb0ed",
+        "fullName" : "Kris Reid"
+      });
     }
     if(this.game.jamie == true){
-      this.game.redTeam.push('Jamie Brookes');
+      this.game.redTeam.push({
+        "_id" : "58ab28eda757ea16ac3eb0ef",
+        "fullName" : "Jamie Brooks"
+      });
     }
 
     this.gameService.postGame(this.game).subscribe(
