@@ -5,14 +5,15 @@
   </div>
 
   <div class="col-xs-12">
-    <h1>{{nextGame | date: 'dd MMMM yyyy'}}</h1>
+    <h1>{{today | date: 'dd MMMM yyyy'}}</h1>
 
     <!-- need to get the latest game from game api and display the date of that game -->
 
   </div>
 
   <div class="col-xs-12">
-    <button class="btn btn-success">
+    <button class="btn btn-success"
+      (click)="identifyNextGame();">
       Count me in!
     </button>
   </div>
