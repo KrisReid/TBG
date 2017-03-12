@@ -9,7 +9,7 @@ import {GameService} from '../services/game.service';
 })
 export class PlayComponent {
 
-  playerId = 5
+  playerId = '58ab2c99a757ea16ac3eb0f9';
   nextGame = '08/08/2017'
 
   today = Date.now();
