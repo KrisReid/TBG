@@ -12,34 +12,48 @@ export class PlayComponent {
   playerId = '58ab2c99a757ea16ac3eb0f9';
 
   games = [];
+  nextGames = [];
+  loading = false;
 
-  today = Date.now();
+  today = new Date().toISOString().slice(0,10);
 
   constructor(
     private router: Router,
     private gameService: GameService) { }
 
   ngOnInit() {
-    this.getGames();
+    this.getGamesLaterThanToday();
   }
 
   getGames() {
+    this.loading = true;
     this.gameService.getGames().subscribe(
-      data => this.games = data,
-      error => console.log(error)
+      data => {
+        this.games = data
+        this.loading = false; },
+      error => {
+        console.log(error)
+        this.loading = false; }
     );
   }
 
-  identifyNextGame() {
-    console.log(this.today);
+  getGamesLaterThanToday() {
+    //Get all the games
+    this.getGames();
+    //loop through the games and where the date is greater than today, push the game into the nextGames array
+    //NEED TO ADD ANOTHER LOOP TO REMOVE GAME IF PLAYER IS ALREADY SIGNED UP
     for (let game of this.games) {
-      if (game.date > '2017-03-16'){
-        return game
+      if (game.date > this.today){
+        this.nextGames.push(game);
       }
-      //IF the date is greater than today
-      //THEN show the array in order of the games available
-      console.log(game);
     }
+    console.log(this.nextGames);
+  }
+
+  play(playerId, gameId) {
+    console.log(playerId);
+    console.log(gameId);
+    //If Player exists
   }
 
 }

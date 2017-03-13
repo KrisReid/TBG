@@ -1,22 +1,23 @@
 <div class="row">
 
   <div class="col-xs-12">
-    <h3>The next game will be on:</h3>
-  </div>
-
-  <div class="col-xs-12">
-    <h1>{{today | date: 'dd MMMM yyyy'}}</h1>
-
-    <!-- need to get the latest game from game api and display the date of that game -->
-
-  </div>
-
-  <div class="col-xs-12">
     <button class="btn btn-success"
-      (click)="identifyNextGame();">
+      (click)="getGamesLaterThanToday()">
+      Get the latest list of available games
+    </button>
+  </div>
+
+  <div class="col-sm-12" *ngFor="let game of nextGames">
+    <h3>{{game.date | date: 'dd MMMM yyyy'}}</h3>
+    <p>Location: {{game.location}}</p>
+    <p>Start Time: {{game.startTime}}</p>
+    <p>Finish Time: {{game.finishTime}}</p>
+    <button class="btn btn primary"
+      (click)="play(playerId, game._id)">
       Count me in!
     </button>
   </div>
+
 
 
 </div>
