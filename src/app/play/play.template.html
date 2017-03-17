@@ -1,13 +1,15 @@
 <div class="row">
+  
+  <h3>Games you are able to sign up to</h3>
 
   <div class="col-xs-12">
     <button class="btn btn-success"
-      (click)="getGamesLaterThanToday()">
+      (click)=getGamesIAmNotPlayingInLaterThanToday()>
       Get the latest list of available games
     </button>
   </div>
 
-  <div class="col-sm-12" *ngFor="let game of nextGames">
+  <div class="col-sm-12" *ngFor="let game of nextAvailableGames">
     <h3>{{game.date | date: 'dd MMMM yyyy'}}</h3>
     <p>Location: {{game.location}}</p>
     <p>Start Time: {{game.startTime}}</p>
@@ -18,6 +20,7 @@
     </button>
   </div>
 
+  <p id="gone"></p>
 
 
 </div>
