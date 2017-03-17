@@ -21,4 +21,8 @@ export class GameService {
     return this.http.post('/games', JSON.stringify(game), this.options);
   }
 
+  editGame(game): Observable<any> {
+    return this.http.put(`/game/${game._id}`, JSON.stringify(game), this.options);
+  }
+
 }

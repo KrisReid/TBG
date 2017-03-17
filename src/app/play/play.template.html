@@ -2,22 +2,21 @@
 
   <div class="col-xs-12">
     <button class="btn btn-success"
-      (click)="getGamesLaterThanToday()">
-      Get the latest list of available games
+      (click)=getGamesIAmNotPlayingInLaterThanToday()>
+      Get the latest list of available games available for you
     </button>
   </div>
 
-  <div class="col-sm-12" *ngFor="let game of nextGames">
+  <div class="col-sm-12" *ngFor="let game of nextAvailableGames">
     <h3>{{game.date | date: 'dd MMMM yyyy'}}</h3>
     <p>Location: {{game.location}}</p>
     <p>Start Time: {{game.startTime}}</p>
     <p>Finish Time: {{game.finishTime}}</p>
     <button class="btn btn primary"
-      (click)="play(playerId, game._id)">
+      (click)="play(game)">
       Count me in!
     </button>
   </div>
-
 
 
 </div>

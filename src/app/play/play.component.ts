@@ -9,11 +9,19 @@ import {GameService} from '../services/game.service';
 })
 export class PlayComponent {
 
-  playerId = '58ab2c99a757ea16ac3eb0f9';
+  player = [{
+    '_id': '58ab28eda757ea16ac3eb0ef',
+    'fullName': 'Jamie Brookes'
+  }]
 
-  games = [];
-  nextGames = [];
-  loading = false;
+  // jamie = '58ab28eda757ea16ac3eb0ef';
+  // random = '58ab2c99a757ea16ac3eb0f9'
+  // kris = '58ab2885a757ea16ac3eb0ed';
+
+  maxTeamSize = 8;
+  game = {} //individual game used for the editGame
+  games = []; //all games in getGame
+  nextAvailableGames = []; //games that are filetered by the getGamesIAmNotPlayingInLaterThanToday function
 
   today = new Date().toISOString().slice(0,10);
 
@@ -22,38 +30,86 @@ export class PlayComponent {
     private gameService: GameService) { }
 
   ngOnInit() {
-    this.getGamesLaterThanToday();
+    this.getGames();
   }
 
   getGames() {
-    this.loading = true;
     this.gameService.getGames().subscribe(
       data => {
-        this.games = data
-        this.loading = false; },
+        this.games = data},
       error => {
-        console.log(error)
-        this.loading = false; }
+        console.log(error)}
     );
   }
 
-  getGamesLaterThanToday() {
-    //Get all the games
-    this.getGames();
-    //loop through the games and where the date is greater than today, push the game into the nextGames array
-    //NEED TO ADD ANOTHER LOOP TO REMOVE GAME IF PLAYER IS ALREADY SIGNED UP
+  getGamesIAmNotPlayingInLaterThanToday() {
+    //empty the array
+    this.nextAvailableGames = []
+
     for (let game of this.games) {
-      if (game.date > this.today){
-        this.nextGames.push(game);
+
+      let inReds = false;
+      let inYellows = false;
+      let inReserves = false;
+
+      for (let reds of game.redTeam) {
+        if (this.player[0]._id == reds._id){
+          inReds = true;
+          console.log("player already exists in the red team")
+        }
+      }
+      for (let yellows of game.yellowTeam) {
+        if (this.player[0]._id == yellows._id){
+          inYellows = true;
+          console.log("player already exists in the yellow team")
+        }
+      }
+      for (let reserves of game.reserves) {
+        if (this.player[0]._id == reserves._id){
+          inReserves = true;
+          console.log("player already exists as a reserve")
+        }
+      }
+      if (inReds == false && inYellows == false && inReserves == false && game.date > this.today){
+        this.nextAvailableGames.push(game);
+      }
+      else {
+        console.log("You are involved in all games later than today")
       }
     }
-    console.log(this.nextGames);
   }
 
-  play(playerId, gameId) {
-    console.log(playerId);
-    console.log(gameId);
-    //If Player exists
+  play(game) {
+    this.allocatePlayer(game);
+    this.editGame(game);
+    setTimeout(1000);
+    this.getGamesIAmNotPlayingInLaterThanToday();
+  }
+
+  editGame(game){
+    this.gameService.editGame(game).subscribe(
+      res => {
+        this.game = game
+      },
+      error => console.log(error)
+    );
+  }
+
+  allocatePlayer(game){
+    let addedToReds = false;
+    let addedToYellows = false;
+
+    if(game.redTeam.length < this.maxTeamSize){
+      game.redTeam.push(this.player[0]);
+      addedToReds = true;
+    }
+    else if (addedToReds == false && game.yellowTeam.length <= this.maxTeamSize){
+      game.yellowTeam.push(this.player[0]);
+      addedToYellows = true;
+    }
+    else if (addedToReds == false && addedToYellows == false){
+      game.reserves.push(this.player[0]);
+    }
   }
 
 }
