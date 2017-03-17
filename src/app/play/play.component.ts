@@ -110,6 +110,17 @@ export class PlayComponent {
 
   play(game) {
     this.allocatePlayer(game);
+    this.editGame(game);
+
+    // this.gameService.editGame(game).subscribe(
+    //   res => {
+    //     this.game = game
+    //   },
+    //   error => console.log(error)
+    // );
+  }
+
+  editGame(game){
     this.gameService.editGame(game).subscribe(
       res => {
         this.game = game
@@ -120,16 +131,19 @@ export class PlayComponent {
 
 
   allocatePlayer(game){
-    console.log(game.redTeam.length);
-    if(game.redTeam.length <= this.maxTeamSize){
+
+    let addedToReds = false;
+    let addedToYellows = false;
+
+    if(game.redTeam.length < this.maxTeamSize){
       game.redTeam.push(this.player[0]);
-      break;
+      addedToReds = true;
     }
-    if(game.yellowTeam.length <= this.maxTeamSize){
+    else if (addedToReds == false && game.yellowTeam.length <= this.maxTeamSize){
       game.yellowTeam.push(this.player[0]);
-      break;
+      addedToYellows = true;
     }
-    else {
+    else if (addedToReds == false && addedToYellows == false){
       game.reserves.push(this.player[0]);
     }
 
