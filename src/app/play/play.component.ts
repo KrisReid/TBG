@@ -9,12 +9,25 @@ import {GameService} from '../services/game.service';
 })
 export class PlayComponent {
 
-  playerId = '58ab28eda757ea16ac3eb0ef';
+  maxTeamSize = 8;
+
+  player = [{
+    '_id': '58ab28eda757ea16ac3eb0ef',
+    'fullName': 'Jamie Brookes'
+  }]
+
+  // player = {
+  //   '_id': '58ab28eda757ea16ac3eb0ef',
+  //   'fullName': 'Jamie Brookes'
+  // };
+
+  // playerId = '58ab28eda757ea16ac3eb0ef';
 
   // jamie = '58ab28eda757ea16ac3eb0ef';
   // random = '58ab2c99a757ea16ac3eb0f9'
   // kris = '58ab2885a757ea16ac3eb0ed';
 
+  game = {}
   games = [];
   nextAvailableGames = [];
   nextGames = [];
@@ -67,19 +80,19 @@ export class PlayComponent {
       let inReserves = false;
 
       for (let reds of game.redTeam) {
-        if (this.playerId == reds._id){
+        if (this.player[0]._id == reds._id){
           inReds = true;
           console.log("player already exists in the red team")
         }
       }
       for (let yellows of game.yellowTeam) {
-        if (this.playerId == yellows._id){
+        if (this.player[0]._id == yellows._id){
           inYellows = true;
           console.log("player already exists in the yellow team")
         }
       }
       for (let reserves of game.reserves) {
-        if (this.playerId == reserves._id){
+        if (this.player[0]._id == reserves._id){
           inReserves = true;
           console.log("player already exists as a reserve")
         }
@@ -95,10 +108,38 @@ export class PlayComponent {
     // console.log(this.nextGames);
   }
 
-  play(playerId, gameId) {
-    console.log(playerId);
-    console.log(gameId);
-    //If Player exists
+  play(game) {
+    this.allocatePlayer(game);
+    this.gameService.editGame(game).subscribe(
+      res => {
+        this.game = game
+      },
+      error => console.log(error)
+    );
   }
+
+
+  allocatePlayer(game){
+    console.log(game.redTeam.length);
+    if(game.redTeam.length <= this.maxTeamSize){
+      game.redTeam.push(this.player[0]);
+      break;
+    }
+    if(game.yellowTeam.length <= this.maxTeamSize){
+      game.yellowTeam.push(this.player[0]);
+      break;
+    }
+    else {
+      game.reserves.push(this.player[0]);
+    }
+
+  }
+
+
+  // play(playerId, gameId) {
+  //   console.log(playerId);
+  //   console.log(gameId);
+  // }
+
 
 }

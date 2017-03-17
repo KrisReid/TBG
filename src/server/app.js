@@ -69,6 +69,13 @@ db.once('open', function() {
     });
   });
 
+  app.put('/game/:id', function(req, res) {
+    Game.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
+      if(err) return console.error(err);
+      res.sendStatus(200);
+    })
+  });
+
   // all other routes are handled by Angular
   app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname,'/../../dist/index.html'));
