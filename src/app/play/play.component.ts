@@ -9,29 +9,19 @@ import {GameService} from '../services/game.service';
 })
 export class PlayComponent {
 
-  maxTeamSize = 8;
-
   player = [{
     '_id': '58ab28eda757ea16ac3eb0ef',
     'fullName': 'Jamie Brookes'
   }]
 
-  // player = {
-  //   '_id': '58ab28eda757ea16ac3eb0ef',
-  //   'fullName': 'Jamie Brookes'
-  // };
-
-  // playerId = '58ab28eda757ea16ac3eb0ef';
-
   // jamie = '58ab28eda757ea16ac3eb0ef';
   // random = '58ab2c99a757ea16ac3eb0f9'
   // kris = '58ab2885a757ea16ac3eb0ed';
 
-  game = {}
-  games = [];
-  nextAvailableGames = [];
-  nextGames = [];
-  loading = false;
+  maxTeamSize = 8;
+  game = {} //individual game used for the editGame
+  games = []; //all games in getGame
+  nextAvailableGames = []; //games that are filetered by the getGamesIAmNotPlayingInLaterThanToday function
 
   today = new Date().toISOString().slice(0,10);
 
@@ -52,28 +42,11 @@ export class PlayComponent {
     );
   }
 
-  // getGamesLaterThanToday() {
-  //   for (let game of this.games) {
-  //     if (game.date > this.today){
-  //       this.nextGames.push(game);
-  //     }
-  //   }
-  //   console.log(this.nextGames);
-  // }
-
   getGamesIAmNotPlayingInLaterThanToday() {
-
     //empty the array
     this.nextAvailableGames = []
 
     for (let game of this.games) {
-
-      //populate the nextGames Array
-      // if (game.date > this.today){
-      //   this.nextGames.push(game);
-      // }
-
-      console.log(game.date)
 
       let inReds = false;
       let inYellows = false;
@@ -103,21 +76,14 @@ export class PlayComponent {
       else {
         console.log("You are involved in all games later than today")
       }
-
     }
-    // console.log(this.nextGames);
   }
 
   play(game) {
     this.allocatePlayer(game);
     this.editGame(game);
-
-    // this.gameService.editGame(game).subscribe(
-    //   res => {
-    //     this.game = game
-    //   },
-    //   error => console.log(error)
-    // );
+    setTimeout(1000);
+    this.getGamesIAmNotPlayingInLaterThanToday();
   }
 
   editGame(game){
@@ -129,9 +95,7 @@ export class PlayComponent {
     );
   }
 
-
   allocatePlayer(game){
-
     let addedToReds = false;
     let addedToYellows = false;
 
@@ -146,14 +110,6 @@ export class PlayComponent {
     else if (addedToReds == false && addedToYellows == false){
       game.reserves.push(this.player[0]);
     }
-
   }
-
-
-  // play(playerId, gameId) {
-  //   console.log(playerId);
-  //   console.log(gameId);
-  // }
-
 
 }
