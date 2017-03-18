@@ -22,6 +22,7 @@ export class PlayComponent {
   game = {} //individual game used for the editGame
   games = []; //all games in getGame
   nextAvailableGames = []; //games that are filetered by the getGamesIAmNotPlayingInLaterThanToday function
+  gamesIAmIn = [];
 
   today = new Date().toISOString().slice(0,10);
 
@@ -74,7 +75,7 @@ export class PlayComponent {
         this.nextAvailableGames.push(game);
       }
       else {
-        console.log("You are involved in all games later than today")
+        console.log("You are already involved in this game")
       }
     }
   }
@@ -110,6 +111,53 @@ export class PlayComponent {
     else if (addedToReds == false && addedToYellows == false){
       game.reserves.push(this.player[0]);
     }
+  }
+
+
+  getGamesIAmPlayingInLaterThanToday() {
+    //empty the array
+    this.gamesIAmIn = [];
+
+    for (let game of this.games) {
+
+      let inReds = false;
+      let inYellows = false;
+      let inReserves = false;
+
+      for (let reds of game.redTeam) {
+        if (this.player[0]._id == reds._id){
+          inReds = true;
+          console.log("player already exists in the red team")
+        }
+      }
+      for (let yellows of game.yellowTeam) {
+        if (this.player[0]._id == yellows._id){
+          inYellows = true;
+          console.log("player already exists in the yellow team")
+        }
+      }
+      for (let reserves of game.reserves) {
+        if (this.player[0]._id == reserves._id){
+          inReserves = true;
+          console.log("player already exists as a reserve")
+        }
+      }
+      if (inReds == true || inYellows == true || inReserves == true && game.date > this.today){
+        this.gamesIAmIn.push(game);
+      }
+      else {
+        console.log("You are not signed up to a game yet")
+      }
+    }
+  }
+
+  dropOut(game) {
+    console.log("Write a function to remove the player ID from the array")
+    console.log(game);
+    // this.allocatePlayer(game);
+    // this.editGame(game);
+    // setTimeout(1000);
+    // this.getGamesIAmNotPlayingInLaterThanToday();
   }
 
 }
