@@ -166,6 +166,14 @@ export class PlayComponent {
         game.redTeam.pop(this.player[0]);
         console.log("Player removed from Red Team");
         //add a charge at this point?
+        //IF THERE IS A PLAYER IN THE RESERVES THEN PROMOTE THEM TO THIS TEAM
+        if (game.reserves.length > 0) {
+          game.redTeam.push(game.reserves[0]);
+          game.reserves.pop(game.reserves[0]);
+        }
+        else {
+          console.log("There are no reserves to promote")
+        }
       }
     }
     for (let yellows of game.yellowTeam) {
@@ -173,6 +181,14 @@ export class PlayComponent {
         game.yellowTeam.pop(this.player[0]);
         console.log("Player removed from Yellow Team");
         //add a charge at this point?
+        //IF THERE IS A PLAYER IN THE RESERVES THEN PROMOTE THEM TO THIS TEAM
+        if (game.reserves.length > 0) {
+          game.yellowTeam.push(game.reserves[0]);
+          game.reserves.pop(game.reserves[0]);
+        }
+        else {
+          console.log("There are no reserves to promote")
+        }
       }
     }
     for (let reserves of game.reserves) {
