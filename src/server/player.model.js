@@ -5,6 +5,7 @@ let playerSchema = mongoose.Schema({
     email: String,
     password: String,
     debt: Number,
+    debtHistory: Array,
     terms: Boolean
 });
 

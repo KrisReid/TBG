@@ -14,6 +14,13 @@ export class CreditDebitComponent {
   player = {};
   credit: number;
 
+  today = new Date();
+
+  admin = [{
+    '_id': '58ab2885a757ea16ac3eb0ed',
+    'fullName': 'Kris Reid'
+  }]
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -36,6 +43,14 @@ export class CreditDebitComponent {
     let cred = Number(credit);
     player.debt += cred;
 
+    let debtHistory = {
+      date : this.today,
+      ammount : cred,
+      who : this.admin[0].fullName
+    }
+
+    player.debtHistory.push(debtHistory);
+
     console.log(player);
 
     this.playerService.updatePlayer(player).subscribe(
@@ -45,5 +60,5 @@ export class CreditDebitComponent {
       error => console.log(error)
     );
   }
-  
+
 }
