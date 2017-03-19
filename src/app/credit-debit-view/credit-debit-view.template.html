@@ -1,29 +1,30 @@
 <div class="row">
-  <h3>{{player.fullName}}, you currently owe a total of:</h3>
-  <h1>{{player.debt}}</h1>
-
-  <div class="col-sm-12" class="row" *ngFor="let debt of player.debtHistory let o=odd; let e=even; let f=first; let l=last"
-    [ngClass]="{oddRow : o, evenRow : e}"
-    [class.topRow]="f"
-    [class.bottomRow]="l"
-    >
-
-    <div class="col-sm-4">
-      <p>{{debt.date}}</p>
+  <div id="summary">
+    <h3>{{player.fullName}}, you have a current balance of:</h3>
+    <h1>{{player.debt| currency: 'GBP' : 'true'}}</h1>
+  </div>
+  <div id="breakdown">
+    <h3>You can find a more detailed breakdown below:</h3>
+    <div class="col-sm-12" class="row" *ngFor="let debt of player.debtHistory let o=odd; let e=even; let f=first; let l=last"
+      [ngClass]="{oddRow : o, evenRow : e}"
+      [class.topRow]="f"
+      [class.bottomRow]="l"
+      >
+      <div class="col-xs-6">
+        <p>{{debt.date | date: 'medium'}}</p>
+      </div>
+      <!-- Add a directive to colour the debt-->
+      <div class="col-xs-6">
+        <p>{{debt.amount | currency: 'GBP' : 'true'}}</p>
+      </div>
+      <!-- <div class="col-sm-4">
+        <p>{{debt.who}}</p>
+      </div> -->
     </div>
-
-    <div class="col-sm-4">
-      <p>{{debt.amount | currency: 'GBP' : 'true'}}</p>
-    </div>
-
-    <div class="col-sm-4">
-      <p>{{debt.who}}</p>
-    </div>
-
   </div>
 
-  <!-- <div *ngFor="let debt of player.debtHistory">
-    <p>{{player.date}}</p>
-  </div> -->
+  <button type="button" class="col-sm-3 btn btn-primary">
+    Make a payment
+  </button>
 
 </div>

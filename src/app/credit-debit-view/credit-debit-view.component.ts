@@ -15,7 +15,6 @@ export class CreditDebitViewComponent {
     _id : "58ce78beaf684a58f97cb1ff"
   };
 
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -35,7 +34,5 @@ export class CreditDebitViewComponent {
       error => console.log(error),
     );
   }
-
-
 
 }
