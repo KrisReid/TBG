@@ -16,6 +16,10 @@ export class PlayerService {
     return this.http.get('/players').map(res => res.json());
   }
 
+  getPlayer(id): Observable<any> {
+    return this.http.get(`/player/${id}`).map(res => res.json());
+  }
+
   postPlayer(player): Observable<any> {
     console.log("POST PLAYER MEYTHOD: " + player);
     return this.http.post('/players', JSON.stringify(player), this.options);
