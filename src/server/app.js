@@ -38,6 +38,13 @@ db.once('open', function() {
     });
   });
 
+  app.get('/player/:id', function(req, res) {
+    Player.findOne({_id: req.params.id}, function(err, obj) {
+      if(err) return console.error(err);
+      res.json(obj);
+    })
+  });
+
   app.post('/players', function(req, res) {
     var obj = new Player(req.body);
     obj.save(function(err, obj) {
