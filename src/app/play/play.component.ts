@@ -11,7 +11,7 @@ export class PlayComponent {
 
   player = [{
     '_id': '58ab28eda757ea16ac3eb0ef',
-    'fullName': 'Jamie Brookes'
+    'fullName': 'Jamie Brooks'
   }]
 
   // jamie = '58ab28eda757ea16ac3eb0ef';
@@ -53,29 +53,36 @@ export class PlayComponent {
       let inYellows = false;
       let inReserves = false;
 
-      for (let reds of game.redTeam) {
-        if (this.player[0]._id == reds._id){
-          inReds = true;
-          console.log("player already exists in the red team")
+      if(game.date > this.today) {
+
+        for (let reds of game.redTeam) {
+          if (this.player[0]._id == reds._id){
+            inReds = true;
+            console.log("player already exists in the red team")
+          }
         }
-      }
-      for (let yellows of game.yellowTeam) {
-        if (this.player[0]._id == yellows._id){
-          inYellows = true;
-          console.log("player already exists in the yellow team")
+        for (let yellows of game.yellowTeam) {
+          if (this.player[0]._id == yellows._id){
+            inYellows = true;
+            console.log("player already exists in the yellow team")
+          }
         }
-      }
-      for (let reserves of game.reserves) {
-        if (this.player[0]._id == reserves._id){
-          inReserves = true;
-          console.log("player already exists as a reserve")
+        for (let reserves of game.reserves) {
+          if (this.player[0]._id == reserves._id){
+            inReserves = true;
+            console.log("player already exists as a reserve")
+          }
         }
-      }
-      if (inReds == false && inYellows == false && inReserves == false && game.date > this.today){
-        this.nextAvailableGames.push(game);
+        if (inReds == false && inYellows == false && inReserves == false){
+          this.nextAvailableGames.push(game);
+        }
+        else {
+          console.log("You are already involved in this game")
+        }
+
       }
       else {
-        console.log("You are already involved in this game")
+        console.log("The game is before todays date")
       }
     }
   }
@@ -125,30 +132,40 @@ export class PlayComponent {
       let inYellows = false;
       let inReserves = false;
 
-      for (let reds of game.redTeam) {
-        if (this.player[0]._id == reds._id){
-          inReds = true;
-          console.log("You are in the Red Team")
+      if(game.date > this.today) {
+
+        for (let reds of game.redTeam) {
+          if (this.player[0]._id == reds._id){
+            inReds = true;
+            console.log("You are in the Red Team")
+          }
         }
-      }
-      for (let yellows of game.yellowTeam) {
-        if (this.player[0]._id == yellows._id){
-          inYellows = true;
-          console.log("You are in the Yellow Team")
+        for (let yellows of game.yellowTeam) {
+          if (this.player[0]._id == yellows._id){
+            inYellows = true;
+            console.log("You are in the Yellow Team")
+          }
         }
-      }
-      for (let reserves of game.reserves) {
-        if (this.player[0]._id == reserves._id){
-          inReserves = true;
-          console.log("You are a reserve")
+        for (let reserves of game.reserves) {
+          if (this.player[0]._id == reserves._id){
+            inReserves = true;
+            console.log("You are a reserve")
+          }
         }
-      }
-      if (inReds == true || inYellows == true || inReserves == true && game.date > this.today){
-        this.gamesIAmIn.push(game);
+
+        if (inReds == true || inYellows == true || inReserves == true){
+          this.gamesIAmIn.push(game);
+        }
+        else {
+          console.log("You are not signed up to a game yet")
+        }
+
       }
       else {
-        console.log("You are not signed up to a game yet")
+        console.log("The game is before todays date")
       }
+
+
     }
   }
 
