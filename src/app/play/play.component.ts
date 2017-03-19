@@ -82,12 +82,13 @@ export class PlayComponent {
 
   play(game) {
     this.allocatePlayer(game);
-    this.editGame(game);
+    this.updateGame(game);
     setTimeout(1000);
     this.getGamesIAmNotPlayingInLaterThanToday();
+    this.getGamesIAmPlayingInLaterThanToday();
   }
 
-  editGame(game){
+  updateGame(game){
     this.gameService.editGame(game).subscribe(
       res => {
         this.game = game
@@ -127,19 +128,19 @@ export class PlayComponent {
       for (let reds of game.redTeam) {
         if (this.player[0]._id == reds._id){
           inReds = true;
-          console.log("player already exists in the red team")
+          console.log("You are in the Red Team")
         }
       }
       for (let yellows of game.yellowTeam) {
         if (this.player[0]._id == yellows._id){
           inYellows = true;
-          console.log("player already exists in the yellow team")
+          console.log("You are in the Yellow Team")
         }
       }
       for (let reserves of game.reserves) {
         if (this.player[0]._id == reserves._id){
           inReserves = true;
-          console.log("player already exists as a reserve")
+          console.log("You are a reserve")
         }
       }
       if (inReds == true || inYellows == true || inReserves == true && game.date > this.today){
@@ -152,12 +153,35 @@ export class PlayComponent {
   }
 
   dropOut(game) {
-    console.log("Write a function to remove the player ID from the array")
-    console.log(game);
-    // this.allocatePlayer(game);
-    // this.editGame(game);
-    // setTimeout(1000);
-    // this.getGamesIAmNotPlayingInLaterThanToday();
+    this.removePlayerFromGame(game);
+    this.updateGame(game);
+    setTimeout(1000);
+    this.getGamesIAmPlayingInLaterThanToday();
+    this.getGamesIAmNotPlayingInLaterThanToday();
+  }
+
+  removePlayerFromGame(game){
+    for (let reds of game.redTeam) {
+      if (this.player[0]._id == reds._id){
+        game.redTeam.pop(this.player[0]);
+        console.log("Player removed from Red Team");
+        //add a charge at this point?
+      }
+    }
+    for (let yellows of game.yellowTeam) {
+      if (this.player[0]._id == yellows._id){
+        game.yellowTeam.pop(this.player[0]);
+        console.log("Player removed from Yellow Team");
+        //add a charge at this point?
+      }
+    }
+    for (let reserves of game.reserves) {
+      if (this.player[0]._id == reserves._id){
+        game.reserves.pop(this.player[0]);
+        console.log("Player removed from the reserves list");
+        //add a charge at this point?
+      }
+    }
   }
 
 }
