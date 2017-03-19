@@ -105,7 +105,7 @@ export class PlayComponent {
       game.redTeam.push(this.player[0]);
       addedToReds = true;
     }
-    else if (addedToReds == false && game.yellowTeam.length <= this.maxTeamSize){
+    else if (addedToReds == false && game.yellowTeam.length < this.maxTeamSize){
       game.yellowTeam.push(this.player[0]);
       addedToYellows = true;
     }
@@ -166,7 +166,7 @@ export class PlayComponent {
         game.redTeam.pop(this.player[0]);
         console.log("Player removed from Red Team");
         //add a charge at this point?
-        //IF THERE IS A PLAYER IN THE RESERVES THEN PROMOTE THEM TO THIS TEAM
+        //IF THERE IS A PLAYER IN THE RESERVES THEN PROMOTE THEM TO THIS TEAM AND REMOVE THEM FROM THE RESERVES
         if (game.reserves.length > 0) {
           game.redTeam.push(game.reserves[0]);
           game.reserves.pop(game.reserves[0]);
@@ -181,7 +181,8 @@ export class PlayComponent {
         game.yellowTeam.pop(this.player[0]);
         console.log("Player removed from Yellow Team");
         //add a charge at this point?
-        //IF THERE IS A PLAYER IN THE RESERVES THEN PROMOTE THEM TO THIS TEAM
+
+        //IF THERE IS A PLAYER IN THE RESERVES THEN PROMOTE THEM TO THIS TEAM AND REMOVE THEM FROM THE RESERVES
         if (game.reserves.length > 0) {
           game.yellowTeam.push(game.reserves[0]);
           game.reserves.pop(game.reserves[0]);
