@@ -59,6 +59,13 @@ export class CreditDebitComponent {
       },
       error => console.log(error)
     );
+
+    console.log("TWAT")
+
+    console.log(this.credit)
+    this.credit = null
+    console.log(this.credit)
+
   }
 
 }
