@@ -45,7 +45,7 @@ export class CreditDebitComponent {
 
     let debtHistory = {
       date : this.today,
-      ammount : cred,
+      amount : cred,
       who : this.admin[0].fullName
     }
 

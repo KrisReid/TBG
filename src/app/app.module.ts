@@ -11,6 +11,7 @@ import {CreditDebitModule} from './credit-debit/credit-debit.module';
 import {CreateGameModule} from './create-game/create-game.module';
 import {GameViewModule} from './game-view/game-view.module';
 import {PlayModule} from './play/play.module';
+import {CreditDebitViewModule} from './credit-debit-view/credit-debit-view.module';
 
 import { PlayerService } from './services/player.service';
 import { GameService } from './services/game.service';
@@ -31,6 +32,7 @@ import {routingModule} from './app.routes';
     CreateGameModule,
     GameViewModule,
     PlayModule,
+    CreditDebitViewModule,
     routingModule
   ],
   providers: [
