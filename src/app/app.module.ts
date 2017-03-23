@@ -20,7 +20,7 @@ import {routingModule} from './app.routes';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +37,7 @@ import {routingModule} from './app.routes';
   ],
   providers: [
     PlayerService,
-    GameService
+    GameService,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

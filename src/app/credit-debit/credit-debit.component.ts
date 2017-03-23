@@ -1,18 +1,20 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
 import {PlayerService} from '../services/player.service';
+
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'credit-debit',
   templateUrl: 'credit-debit.template.html',
   styleUrls: ['credit-debit.styles.css']
 })
-export class CreditDebitComponent {
+export class CreditDebitComponent implements OnInit {
 
   players = [];
   player = {};
-  credit: number;
+  credit: 0;
 
   today = new Date();
 
@@ -24,7 +26,8 @@ export class CreditDebitComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private playerService: PlayerService
+    private playerService: PlayerService,
+    public toast: ToastComponent,
   ) {  }
 
   ngOnInit() {
@@ -34,11 +37,12 @@ export class CreditDebitComponent {
   getPlayers() {
     this.playerService.getPlayers().subscribe(
       data => this.players = data,
-      error => console.log(error)
+      error => console.log(error),
     );
   }
 
   Update(player) {
+
     let credit = this.credit
     let cred = Number(credit);
     player.debt += cred;
@@ -49,23 +53,28 @@ export class CreditDebitComponent {
       who : this.admin[0].fullName
     }
 
-    player.debtHistory.push(debtHistory);
+    console.log(typeof cred);
 
-    console.log(player);
+    if (cred > 0 || cred < 0){
+      player.debtHistory.push(debtHistory);
 
-    this.playerService.updatePlayer(player).subscribe(
-      res => {
-        this.player = player;
-      },
-      error => console.log(error)
-    );
+      console.log(player);
 
-    console.log("TWAT")
+      this.playerService.updatePlayer(player).subscribe(
+        res => {
+          this.player = player;
+          this.toast.setMessage('Credit / Debit updated successfully', 'success');
+        },
+        error => console.log(error)
+      );
 
-    console.log(this.credit)
-    this.credit = null
-    console.log(this.credit)
-
+      //this nulls the value after hitting update, meaning it can not be used for another entry
+      this.credit = null;
+    }
+    else {
+      console.log('No')
+      this.toast.setMessage('No data has been populated', 'danger');
+    }
   }
 
 }
