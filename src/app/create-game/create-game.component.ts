@@ -29,13 +29,13 @@ export class CreateGameComponent {
   Create(){
     if(this.game.kris == true){
       this.game.redTeam.push({
-        "_id" : "58ab2885a757ea16ac3eb0ed",
+        "_id" : "58d5a59faa81afb332a96641",
         "fullName" : "Kris Reid"
       });
     }
     if(this.game.jamie == true){
       this.game.redTeam.push({
-        "_id" : "58ab28eda757ea16ac3eb0ef",
+        "_id" : "58d5a5caaa81afb332a96642",
         "fullName" : "Jamie Brooks"
       });
     }

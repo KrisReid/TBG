@@ -10,13 +10,9 @@ import {GameService} from '../services/game.service';
 export class PlayComponent {
 
   player = [{
-    '_id': '58ab28eda757ea16ac3eb0ef',
+    '_id': '58d5a5caaa81afb332a96642',
     'fullName': 'Jamie Brooks'
   }]
-
-  // jamie = '58ab28eda757ea16ac3eb0ef';
-  // random = '58ab2c99a757ea16ac3eb0f9'
-  // kris = '58ab2885a757ea16ac3eb0ed';
 
   maxTeamSize = 8;
   game = {} //individual game used for the editGame
