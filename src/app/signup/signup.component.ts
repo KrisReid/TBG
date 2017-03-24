@@ -40,15 +40,15 @@ export class SignupComponent implements OnInit {
       email: [this.email,
         [Validators.required, Validators.pattern("^[A-Za-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$")]],
       password: [this.password,
-        [Validators.required, Validators.pattern("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$")]],
+        [Validators.required, Validators.pattern("^(?=.*\)(?=.*[a-z])(?=.*[A-Z]).{6,35}$")]],
       terms: [this.terms,
         [this.mustBeChecked]],
       debt: 0,
     });
 
-    // // This clears the form so its not populated on load, but also clears the 0 value of debt
-    // console.log('Form reset happens');
-    // this.addPlayerForm.reset();
+
+    // // This clears the form so its not populated on load
+    this.addPlayerForm.reset();
 
   }
 
@@ -92,12 +92,13 @@ export class SignupComponent implements OnInit {
     },
     password: {
       required: 'Please specify your password.',
-      pattern: 'Password contain at least one cpaital letter, one number and be greater than 6 characters long.'
+      pattern: 'Password must be over 6 characters long and contain at least one lower case letter and one cpaital letter.'
     }
   };
 
   SignUp() {
-    console.log(this.addPlayerForm.value);
+    this.addPlayerForm.value.debt = 0;
+
     this.playerService.postPlayer(this.addPlayerForm.value).subscribe(
       res => {
         const newPlayer = res.json();

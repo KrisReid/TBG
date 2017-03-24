@@ -10,9 +10,9 @@ import {PlayerService} from '../services/player.service';
 })
 export class CreditDebitViewComponent {
 
-  //player signed in
+  //Jon player signed in
   player = {
-    _id : "58ce78beaf684a58f97cb1ff"
+    _id : "58d5a720a65377b3c55d4d38"
   };
 
   constructor(
