@@ -1,10 +1,12 @@
-<div class="row" id="search">
-  <div class="col-sm-4 col-sm-offset-8">
-    <input #searchBox class="form-control input-sm"
-      placeholder="Search by player"
-      (keyup)="0" />
+<app-toast [message]="toast.message"></app-toast>
+
+  <div class="row" id="search">
+    <div class="col-sm-4 col-sm-offset-8">
+      <input #searchBox class="form-control input-sm"
+        placeholder="Search by player"
+        (keyup)="0" />
+    </div>
   </div>
-</div>
 
   <div class="col-sm-12" class="row" *ngFor="let player of players | contentFilter:searchBox.value; let o=odd; let e=even; let f=first; let l=last"
     [ngClass]="{oddRow : o, evenRow : e}"
@@ -21,9 +23,9 @@
     </div>
 
     <div class="col-xs-3 col-sm-3">
-      <input #creditInput class="form-control input-sm" type="currency"
-      placeholder="5"
-      (keyup)="credit=creditInput.value"/>
+      <input #creditDebitInput id="creditDebitInput" class="form-control input-sm" type="number"
+      placeholder="-4"
+      (keyup)="credit=creditDebitInput.value"/>
     </div>
 
     <button type="button" class="col-xs-1 col-sm-3 btn btn-primary"
