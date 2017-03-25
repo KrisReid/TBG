@@ -5,7 +5,8 @@ import {GameService} from '../services/game.service';
 
 @Component({
     selector: 'gameview',
-    templateUrl: 'game-view.template.html'
+    templateUrl: 'game-view.template.html',
+    styleUrls: ['game-view.styles.css']
 })
 export class GameViewComponent {
 

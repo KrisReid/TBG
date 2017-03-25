@@ -1,24 +1,21 @@
-<div *ngFor="let game of games | sort">
-    <div class="col-sm-6">
-        <!-- <h3>Game #{{game._id}}</h3> -->
-        <h3>{{game.date | date: 'dd MMMM yyyy'}}</h3>
-        <p>Location: {{game.location}}</p>
-        <p>Start Time: {{game.startTime}}</p>
-        <p>Finish Time: {{game.finishTime}}</p>
-        <h4>Red Team</h4>
-        <div *ngFor="let reds of game.redTeam">
-          <p>{{reds.fullName}}</p>
-        </div>
-        <h4>Yellow Team</h4>
-        <div *ngFor="let yellows of game.yellowTeam">
-          <p>{{yellows.fullName}}</p>
-        </div>
-        <h4>Reserves</h4>
-        <div *ngFor="let reserves of game.reserves">
-          <p>{{reserves.fullName}}</p>
-        </div>
-        <!-- <p>Red Team: {{game.redTeam}}</p> -->
-        <!-- <p>Yellow Team: {{game.yellowTeam}}</p> -->
-
+<div class="col-sm-12" id="page">
+  <div *ngFor="let game of games | sort">
+    <div class="col-sm-offset-1 col-sm-4 col-sm-offset-1" id="game">
+      <h3 id="date">{{game.date | date: 'dd MMMM yyyy'}}</h3>
+      <p id="location">Location: {{game.location}}</p>
+      <p id="time">Time: {{game.startTime}} - {{game.finishTime}}</p>
+      <h4 id="redTitle">Red Team</h4>
+      <div *ngFor="let reds of game.redTeam">
+        <p id="player">{{reds.fullName}}</p>
+      </div>
+      <h4 id="yellowTitle">Yellow Team</h4>
+      <div *ngFor="let yellows of game.yellowTeam">
+        <p id="player">{{yellows.fullName}}</p>
+      </div>
+      <h4 id="reserveTitle">Reserves</h4>
+      <div *ngFor="let reserves of game.reserves">
+        <p id="player">{{reserves.fullName}}</p>
+      </div>
     </div>
   </div>
+</div>
