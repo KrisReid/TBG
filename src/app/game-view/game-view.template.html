@@ -1,4 +1,4 @@
-<div *ngFor="let game of games">
+<div *ngFor="let game of games | sort">
     <div class="col-sm-6">
         <!-- <h3>Game #{{game._id}}</h3> -->
         <h3>{{game.date | date: 'dd MMMM yyyy'}}</h3>
@@ -19,6 +19,6 @@
         </div>
         <!-- <p>Red Team: {{game.redTeam}}</p> -->
         <!-- <p>Yellow Team: {{game.yellowTeam}}</p> -->
-        
+
     </div>
   </div>
