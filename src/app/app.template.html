@@ -1,54 +1,3 @@
-<!-- <h1>Trial of new code</h1>
-<h1>Players</h1>
-<div class="card">
-  <h4 class="card-header">Current Players ({{players.length}})</h4>
-  <div class="card-block">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-default">
-        <tr>
-          <th>Full Name</th>
-          <th>email</th>
-          <th>password</th>
-          <th>debt</th>
-          <th>terms</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let player of players">
-          <td>{{player.fullName}}</td>
-          <td>{{player.email}}</td>
-          <td>{{player.password}}</td>
-          <td>{{player.debt}}</td>
-          <td>{{player.terms}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <h1>Games</h1>
-  <div class="card-block">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-default">
-        <tr>
-          <th>Red Team</th>
-          <th>Yellow Team</th>
-          <th>Reserves</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let game of games">
-          <td>{{game.redTeam[0].name}}</td>
-          <td>{{game.yellowTeam[0].name}}</td>
-          <td>{{game.reserves[0].name}}</td>
-        </tr>
-        <tr *ngFor="let game of games">
-          <td>{{game.redTeam[1].name}}</td>
-          <td>{{game.yellowTeam[1].name}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div> -->
-
 <div class='navbar navbar-default navbar-fixed-top'>
   <div class="container">
     <div class="navbar-header">
@@ -62,9 +11,10 @@
       </button>
     </div>
       <!-- Could also use 'nav nav-pills' -->
-      <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right collapse navbar-collapse" data-toggle="collapse" data-target=".navbar-collapse">
         <li>
           <a routerLink="/gameview" routerLinkActive="active">All Games</a>
+          <!-- <a data-toggle="collapse" data-target=".navbar-collapse"></a> -->
         </li>
         <li>
           <a routerLink="/play" routerLinkActive="active">Play!</a>
@@ -85,6 +35,7 @@
   </div>
 </div>
 
+<!-- data-toggle="collapse" data-target=".navbar-collapse" -->
 <div class="container-fluid">
   <router-outlet></router-outlet>
 </div>

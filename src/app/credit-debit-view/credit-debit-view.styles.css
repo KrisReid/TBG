@@ -16,6 +16,21 @@
   border-bottom: 1px solid lightgrey;
 }
 
-#search{
+
+#summary{
+  text-align: center;
   padding-bottom: 10px;
+}
+
+#debt{
+  text-align: center;
+}
+
+#breakdown{
+  padding-bottom: 20px;
+}
+
+
+#payment{
+  text-align: center;
 }
