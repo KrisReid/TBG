@@ -1,0 +1,28 @@
+#game {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border: 1px solid darkgray;
+  margin-bottom: 20px;
+  background-color: rgba(149, 228, 133, 0.05);
+}
+
+#date {
+  text-align: center;
+}
+
+#redTitle {
+  color: rgba(144, 10, 26, 0.83);
+}
+
+#yellowTitle {
+  color: #dcd020;
+}
+
+#player {
+  padding-left: 10px;
+}
+
+#time {
+  border-bottom: 1px solid darkgray;
+  padding-bottom: 10px;
+}
