@@ -1,65 +1,46 @@
-<div class="row">
+<div class="col-sm-12" id="page">
 
-  <div class="col-sm-12">
-    <p>You are using the following player:</p>
-    <b>{{player[0].fullName}}</b>
+  <div id="availableGames">
+    <h3>Games available for you</h3>
+    <div *ngFor="let game of nextAvailableGames">
+      <div class="col-sm-offset-1 col-sm-4 col-sm-offset-1" id="game">
+        <h3>{{game.date | date: 'dd MMMM yyyy'}}</h3>
+        <p>Location: {{game.location}}</p>
+        <p>Time: {{game.startTime}} - {{game.finishTime}}</p>
+        <button class="btn btn-success" id="button"
+          (click)="play(game)">
+          Count me in!
+        </button>
+      </div>
+    </div>
   </div>
 
-  <div class="col-sm-6"  id="availableGames">
+  <div id="futureGames">
+    <h3>Games you are due to play</h3>
+    <div *ngFor="let game of gamesIAmIn">
+      <div class="col-sm-offset-1 col-sm-4 col-sm-offset-1" id="game">
+        <h3>{{game.date | date: 'dd MMMM yyyy'}}</h3>
+        <p>Location: {{game.location}}</p>
+        <p id="time">Time: {{game.startTime}} - {{game.finishTime}}</p>
 
-    <div class="col-xs-12">
-      <button class="btn btn-primary"
-        (click)=getGamesIAmNotPlayingInLaterThanToday()>
-        Get the latest list of available games available for you
-      </button>
-    </div>
-
-    <div class="col-sm-12" *ngFor="let game of nextAvailableGames">
-      <h3>{{game.date | date: 'dd MMMM yyyy'}}</h3>
-      <p>Location: {{game.location}}</p>
-      <p>Start Time: {{game.startTime}}</p>
-      <p>Finish Time: {{game.finishTime}}</p>
-      <button class="btn btn-success"
-        (click)="play(game)">
-        Count me in!
-      </button>
-    </div>
-
-  </div>
-
-  <div class="col-sm-6"  id="availableGames">
-
-    <div class="col-xs-12">
-      <button class="btn btn-primary"
-        (click)=getGamesIAmPlayingInLaterThanToday()>
-        Get the latest list of games you are due to play in
-      </button>
-    </div>
-
-    <div class="col-sm-12" *ngFor="let game of gamesIAmIn">
-      <h3>{{game.date | date: 'dd MMMM yyyy'}}</h3>
-      <p>Location: {{game.location}}</p>
-      <p>Start Time: {{game.startTime}}</p>
-      <p>Finish Time: {{game.finishTime}}</p>
-
-      <h4>Red Team</h4>
-      <div *ngFor="let reds of game.redTeam">
-        <p>{{reds.fullName}}</p>
+        <h4 id="redTitle">Red Team</h4>
+        <div *ngFor="let reds of game.redTeam">
+          <p>{{reds.fullName}}</p>
+        </div>
+        <h4 id="yellowTitle">Yellow Team</h4>
+        <div *ngFor="let yellows of game.yellowTeam">
+          <p>{{yellows.fullName}}</p>
+        </div>
+        <h4>Reserves</h4>
+        <div *ngFor="let reserves of game.reserves">
+          <p>{{reserves.fullName}}</p>
+        </div>
+        <button class="btn btn-danger" id="button"
+          (click)="dropOut(game)">
+          Drop Out
+        </button>
       </div>
-      <h4>Yellow Team</h4>
-      <div *ngFor="let yellows of game.yellowTeam">
-        <p>{{yellows.fullName}}</p>
-      </div>
-      <h4>Reserves</h4>
-      <div *ngFor="let reserves of game.reserves">
-        <p>{{reserves.fullName}}</p>
-      </div>
-      <button class="btn btn-danger"
-        (click)="dropOut(game)">
-        Drop Out
-      </button>
     </div>
-
   </div>
 
 </div>
