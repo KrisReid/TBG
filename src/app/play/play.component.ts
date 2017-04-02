@@ -106,6 +106,7 @@ export class PlayComponent {
     );
   }
 
+  // Add the charging bit to this function
   allocatePlayer(game){
     let addedToReds = false;
     let addedToYellows = false;

@@ -3,9 +3,13 @@
   padding-bottom: 2px;
   border: 1px solid darkgray;
   margin-bottom: 20px;
-  background-color: rgba(156, 39, 176, 0.1);
+  /*background-color: rgba(156, 39, 176, 0.1);*/
   text-align: center;
 }
+
+/*#availableGames{
+  border: 1px solid darkgray;
+}*/
 
 #button{
   margin-bottom: 20px;
