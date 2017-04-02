@@ -5,7 +5,8 @@ import {GameService} from '../services/game.service';
 
 @Component({
   selector: 'play',
-  templateUrl: 'play.template.html'
+  templateUrl: 'play.template.html',
+  styleUrls: ['play.styles.css']
 })
 export class PlayComponent {
 
@@ -33,13 +34,18 @@ export class PlayComponent {
   getGames() {
     this.gameService.getGames().subscribe(
       data => {
-        this.games = data},
+        this.games = data,
+        this.getGamesIAmNotPlayingInLaterThanToday(),
+        this.getGamesIAmPlayingInLaterThanToday()
+      },
       error => {
         console.log(error)}
     );
   }
 
   getGamesIAmNotPlayingInLaterThanToday() {
+
+    console.log(this.games)
     //empty the array
     this.nextAvailableGames = []
 
@@ -100,6 +106,7 @@ export class PlayComponent {
     );
   }
 
+  // Add the charging bit to this function
   allocatePlayer(game){
     let addedToReds = false;
     let addedToYellows = false;
