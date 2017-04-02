@@ -47,7 +47,7 @@ export class CreateGameComponent {
       },
       error => console.log(error)
     );
-    this.router.navigate(['/login'])
+    this.router.navigate(['/play'])
 
   }
 
