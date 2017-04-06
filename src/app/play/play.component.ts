@@ -2,6 +2,9 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {GameService} from '../services/game.service';
+import {PlayerService} from '../services/player.service';
+
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'play',
@@ -10,10 +13,26 @@ import {GameService} from '../services/game.service';
 })
 export class PlayComponent {
 
-  player = [{
-    '_id': '58d5a5caaa81afb332a96642',
-    'fullName': 'Jamie Brooks'
-  }]
+  // Signed in as Jon
+  player = {
+    '_id': '58d5a720a65377b3c55d4d38'
+  }
+
+  //sign in as Jamie
+  // player = {
+  //   '_id': '58d5a5caaa81afb332a96642'
+  // }
+
+  reservePlayer = { }
+
+  players = []
+
+
+  costOfGame = -4;
+  autoDebit = "Auto-Debit";
+  autoCredit = "Auto-Credit";
+  lateDropOut = 2;
+  earlyDropOut = 4;
 
   maxTeamSize = 8;
   game = {} //individual game used for the editGame
@@ -22,13 +41,49 @@ export class PlayComponent {
   gamesIAmIn = [];
 
   today = new Date().toISOString().slice(0,10);
+  unfilteredToday = new Date();
 
   constructor(
     private router: Router,
-    private gameService: GameService) { }
+    private gameService: GameService,
+    private playerService: PlayerService,
+    // public toast: ToastComponent,
+  ) { }
 
   ngOnInit() {
     this.getGames();
+    this.getPlayers();
+    this.getPlayerById();
+  }
+
+  getPlayerById() {
+    this.playerService.getPlayer(this.player._id).subscribe(
+      res => {
+        const player = res;
+        this.player = player;
+      },
+      error => console.log(error),
+    );
+  }
+
+  getPlayers() {
+    this.playerService.getPlayers().subscribe(
+      res => {
+        const player = res;
+        this.players = player;
+      },
+      error => console.log(error),
+    );
+  }
+
+  getReserveById(id) {
+    this.playerService.getPlayer(id).subscribe(
+      res => {
+        const player = res;
+        this.reservePlayer = player;
+      },
+      error => console.log(error),
+    );
   }
 
   getGames() {
@@ -44,7 +99,6 @@ export class PlayComponent {
   }
 
   getGamesIAmNotPlayingInLaterThanToday() {
-
     console.log(this.games)
     //empty the array
     this.nextAvailableGames = []
@@ -55,22 +109,25 @@ export class PlayComponent {
       let inYellows = false;
       let inReserves = false;
 
-      if(game.date > this.today) {
+      if(game.date >= this.today) {
 
         for (let reds of game.redTeam) {
-          if (this.player[0]._id == reds._id){
+          // if (this.player[0]._id == reds._id){
+          if (this.player._id == reds._id){
             inReds = true;
             console.log("player already exists in the red team")
           }
         }
         for (let yellows of game.yellowTeam) {
-          if (this.player[0]._id == yellows._id){
+          // if (this.player[0]._id == yellows._id){
+          if (this.player._id == yellows._id){
             inYellows = true;
             console.log("player already exists in the yellow team")
           }
         }
         for (let reserves of game.reserves) {
-          if (this.player[0]._id == reserves._id){
+          // if (this.player[0]._id == reserves._id){
+          if (this.player._id == reserves._id){
             inReserves = true;
             console.log("player already exists as a reserve")
           }
@@ -106,21 +163,51 @@ export class PlayComponent {
     );
   }
 
-  // Add the charging bit to this function
+  updateCost(player){
+    console.log(this.player)
+
+    //Update the player debt
+    player.debt += this.costOfGame;
+
+    //Update the debt history
+    let debtHistory = {
+      date : this.unfilteredToday,
+      amount : this.costOfGame,
+      who : this.autoDebit
+    }
+
+    player.debtHistory.push(debtHistory);
+
+    this.playerService.updatePlayer(player).subscribe(
+      res => {
+        this.player = player;
+        // this.toast.setMessage('You have been debted £4', 'success');
+      },
+      error => console.log(error)
+    );
+
+  }
+
+
   allocatePlayer(game){
     let addedToReds = false;
     let addedToYellows = false;
 
     if(game.redTeam.length < this.maxTeamSize){
-      game.redTeam.push(this.player[0]);
+      // game.redTeam.push(this.player[0]);
+      game.redTeam.push(this.player);
       addedToReds = true;
+      this.updateCost(this.player);
     }
     else if (addedToReds == false && game.yellowTeam.length < this.maxTeamSize){
-      game.yellowTeam.push(this.player[0]);
+      // game.yellowTeam.push(this.player[0]);
+      game.yellowTeam.push(this.player);
       addedToYellows = true;
+      this.updateCost(this.player);
     }
     else if (addedToReds == false && addedToYellows == false){
-      game.reserves.push(this.player[0]);
+      // game.reserves.push(this.player[0]);
+      game.reserves.push(this.player);
     }
   }
 
@@ -135,22 +222,25 @@ export class PlayComponent {
       let inYellows = false;
       let inReserves = false;
 
-      if(game.date > this.today) {
+      if(game.date >= this.today) {
 
         for (let reds of game.redTeam) {
-          if (this.player[0]._id == reds._id){
+          // if (this.player[0]._id == reds._id){
+          if (this.player._id == reds._id){
             inReds = true;
             console.log("You are in the Red Team")
           }
         }
         for (let yellows of game.yellowTeam) {
-          if (this.player[0]._id == yellows._id){
+          // if (this.player[0]._id == yellows._id){
+          if (this.player._id == yellows._id){
             inYellows = true;
             console.log("You are in the Yellow Team")
           }
         }
         for (let reserves of game.reserves) {
-          if (this.player[0]._id == reserves._id){
+          // if (this.player[0]._id == reserves._id){
+          if (this.player._id == reserves._id){
             inReserves = true;
             console.log("You are a reserve")
           }
@@ -180,45 +270,174 @@ export class PlayComponent {
     this.getGamesIAmNotPlayingInLaterThanToday();
   }
 
+  reduceCost(game, player){
+    console.log(this.player)
+
+    if(game.date == this.today) {
+
+      player.debt += this.lateDropOut
+
+      let debtHistory = {
+        date : this.unfilteredToday,
+        amount : this.lateDropOut,
+        who : this.autoCredit
+      }
+
+      player.debtHistory.push(debtHistory);
+
+      this.playerService.updatePlayer(player).subscribe(
+        res => {
+          this.player = player;
+          // this.toast.setMessage('You have been debted £4', 'success');
+        },
+        error => console.log(error)
+      );
+
+    } else {
+      player.debt += this.earlyDropOut
+
+      let debtHistory = {
+        date : this.unfilteredToday,
+        amount : this.earlyDropOut,
+        who : this.autoCredit
+      }
+
+      player.debtHistory.push(debtHistory);
+
+      this.playerService.updatePlayer(player).subscribe(
+        res => {
+          this.player = player;
+          // this.toast.setMessage('You have been debted £4', 'success');
+        },
+        error => console.log(error)
+      );
+
+    }
+
+  }
+
   removePlayerFromGame(game){
     for (let reds of game.redTeam) {
-      if (this.player[0]._id == reds._id){
-        game.redTeam.pop(this.player[0]);
+      // if (this.player[0]._id == reds._id){
+      if (this.player._id == reds._id){
+        game.redTeam.pop(this.player);
+        this.reduceCost(game, this.player);
+        // game.redTeam.pop(this.player[0]);
         console.log("Player removed from Red Team");
-        //add a charge at this point?
         //IF THERE IS A PLAYER IN THE RESERVES THEN PROMOTE THEM TO THIS TEAM AND REMOVE THEM FROM THE RESERVES
+
         if (game.reserves.length > 0) {
+
+          //this bit of code is looping through all players, matching the ID and then storing the object against the variable res
+          // let res = {}
+          for (let a of this.players){
+            if(a._id == game.reserves[0]._id){
+              // console.log(a);
+              this.reservePlayer = a;
+            }
+          }
+
+          this.updateReserveCost(this.reservePlayer);
+
+          // this.updateCost(game.reserves[0]);
+
           game.redTeam.push(game.reserves[0]);
           game.reserves.pop(game.reserves[0]);
         }
         else {
           console.log("There are no reserves to promote")
         }
+
+
       }
     }
     for (let yellows of game.yellowTeam) {
-      if (this.player[0]._id == yellows._id){
-        game.yellowTeam.pop(this.player[0]);
+      // if (this.player[0]._id == yellows._id){
+      if (this.player._id == yellows._id){
+        // game.yellowTeam.pop(this.player[0]);
+        game.yellowTeam.pop(this.player);
+        this.reduceCost(game, this.player);
         console.log("Player removed from Yellow Team");
-        //add a charge at this point?
 
         //IF THERE IS A PLAYER IN THE RESERVES THEN PROMOTE THEM TO THIS TEAM AND REMOVE THEM FROM THE RESERVES
         if (game.reserves.length > 0) {
+
+          //this bit of code is looping through all players, matching the ID and then storing the object against the variable res
+          // let res = {}
+          for (let a of this.players){
+            if(a._id == game.reserves[0]._id){
+              // console.log(a);
+              this.reservePlayer = a;
+            }
+          }
+
+          this.updateReserveCost(this.reservePlayer);
+
           game.yellowTeam.push(game.reserves[0]);
           game.reserves.pop(game.reserves[0]);
         }
         else {
           console.log("There are no reserves to promote")
         }
+
       }
     }
     for (let reserves of game.reserves) {
-      if (this.player[0]._id == reserves._id){
-        game.reserves.pop(this.player[0]);
+      // if (this.player[0]._id == reserves._id){
+      if (this.player._id == reserves._id){
+        // game.reserves.pop(this.player[0]);
+        game.reserves.pop(this.player);
         console.log("Player removed from the reserves list");
-        //add a charge at this point?
       }
     }
   }
+
+  updateReserveCost(reserve){
+
+    //Update the player debt
+    reserve.debt += this.costOfGame;
+
+    let uToday = new Date();
+
+    //Update the debt history
+    let debtHistory = {
+      date : uToday,
+      amount : this.costOfGame,
+      who : this.autoDebit
+    }
+
+    reserve.debtHistory.push(debtHistory);
+
+    this.playerService.updatePlayer(reserve).subscribe(
+      res => {
+        this.reservePlayer = reserve;
+        // this.toast.setMessage('You have been debted £4', 'success');
+      },
+      error => console.log(error)
+    );
+
+  }
+
+  // belly(game) {
+  //   console.log(game);
+  //   console.log(game.reserves[0]._id);
+  //
+  //   this.getReserveById(game.reserves[0]._id);
+  //
+  //
+  //   let res = {}
+  //
+  //   for (let a of this.players){
+  //     if(a._id == game.reserves[0]._id){
+  //       // console.log(a);
+  //       res = a;
+  //     }
+  //   }
+  //
+  //   console.log(res);
+  //
+  //
+  //
+  // }
 
 }
