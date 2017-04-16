@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 
 import {GameService} from '../services/game.service';
 import {PlayerService} from '../services/player.service';
+import {UserAuthService} from '../services/user-auth.service';
 
 import { ToastComponent } from '../toast/toast.component';
 
@@ -18,9 +19,8 @@ export class PlayComponent {
     '_id': '58d5a720a65377b3c55d4d38'
   }
 
-  // Signed in as Alison
   // player = {
-  //   '_id': '58e67de380b7b6058c225812'
+  //   '_id': ''
   // }
 
   reservePlayer = { }
@@ -49,10 +49,13 @@ export class PlayComponent {
     private router: Router,
     private gameService: GameService,
     private playerService: PlayerService,
+    public authService: UserAuthService,
     // public toast: ToastComponent,
   ) { }
 
   ngOnInit() {
+    // this.authService.player = this.player
+    // console.log(this.player)
     this.getGames();
     this.getPlayers();
     this.getPlayerById();

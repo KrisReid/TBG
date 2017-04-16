@@ -45,6 +45,13 @@ db.once('open', function() {
     })
   });
 
+  app.get('/playeremail/:email', function(req, res) {
+    Player.findOne({email: req.params.email}, function(err, obj) {
+      if(err) return console.error(err);
+      res.json(obj);
+    })
+  });
+
   app.post('/players', function(req, res) {
     var obj = new Player(req.body);
     obj.save(function(err, obj) {

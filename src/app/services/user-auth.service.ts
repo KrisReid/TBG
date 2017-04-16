@@ -1,11 +1,13 @@
-//MOCK SERVICE
-
 import {Injectable} from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class UserAuthService{
+
   loggedInUser: string = null;
   redirectUrl: string;
+  player = {}
+
 
   login(userName: string) {
     return new Promise((resolve, reject) => {
@@ -25,4 +27,5 @@ export class UserAuthService{
       }, 200);
     });
   }
+
 }

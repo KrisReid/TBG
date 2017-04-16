@@ -20,6 +20,11 @@ export class PlayerService {
     return this.http.get(`/player/${id}`).map(res => res.json());
   }
 
+  getPlayerByEmail(email): Observable<any> {
+    console.log("made it here " + email)
+    return this.http.get(`/playeremail/${email}`).map(res => res.json());
+  }
+
   postPlayer(player): Observable<any> {
     console.log("POST PLAYER MEYTHOD: " + player);
     return this.http.post('/players', JSON.stringify(player), this.options);
