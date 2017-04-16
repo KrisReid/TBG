@@ -1,21 +1,30 @@
-<div class="col-sm-12" id="page">
-  <div *ngFor="let game of games | sort">
-    <div class="col-sm-offset-1 col-sm-4 col-sm-offset-1" id="game">
-      <h3 id="date">{{game.date | date: 'dd MMMM yyyy'}}</h3>
-      <p id="location">Location: {{game.location}}</p>
-      <p id="time">Time: {{game.startTime}} - {{game.finishTime}}</p>
-      <h4 id="redTitle">Red Team</h4>
-      <div *ngFor="let reds of game.redTeam">
-        <p id="player">{{reds.fullName}}</p>
-      </div>
-      <h4 id="yellowTitle">Yellow Team</h4>
-      <div *ngFor="let yellows of game.yellowTeam">
-        <p id="player">{{yellows.fullName}}</p>
-      </div>
-      <h4 id="reserveTitle">Reserves</h4>
-      <div *ngFor="let reserves of game.reserves">
-        <p id="player">{{reserves.fullName}}</p>
+<div *ngIf="authService.loggedInUser == 'Admin'">
+  <div class="col-sm-12" id="page">
+    <div *ngFor="let game of games | sort">
+      <div class="col-sm-offset-1 col-sm-4 col-sm-offset-1" id="game">
+        <h3 id="date">{{game.date | date: 'dd MMMM yyyy'}}</h3>
+        <p id="location">Location: {{game.location}}</p>
+        <p id="time">Time: {{game.startTime}} - {{game.finishTime}}</p>
+        <h4 id="redTitle">Red Team</h4>
+        <div *ngFor="let reds of game.redTeam">
+          <p id="player">{{reds.fullName}}</p>
+        </div>
+        <h4 id="yellowTitle">Yellow Team</h4>
+        <div *ngFor="let yellows of game.yellowTeam">
+          <p id="player">{{yellows.fullName}}</p>
+        </div>
+        <h4 id="reserveTitle">Reserves</h4>
+        <div *ngFor="let reserves of game.reserves">
+          <p id="player">{{reserves.fullName}}</p>
+        </div>
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="authService.loggedInUser == 'User'">
+  <p>
+    GENERIC ERROR MESSAGE TO BE REPLACED
+
+    YOU DO NOT HAVE AUTHORISATION TO BE ON THIS PAGE
+  </p>
 </div>

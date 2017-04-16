@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {GameService} from '../services/game.service';
+import { UserAuthService } from '../services/user-auth.service';
 
 @Component({
   selector: 'create',
@@ -11,7 +12,8 @@ export class CreateGameComponent {
 
   constructor(
     private router: Router,
-    private gameService: GameService
+    private gameService: GameService,
+    private authService: UserAuthService
   ) {}
 
   games = []

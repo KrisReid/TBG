@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
 import {PlayerService} from '../services/player.service';
+import { UserAuthService } from '../services/user-auth.service';
 
 import { ToastComponent } from '../toast/toast.component';
 
@@ -28,6 +29,7 @@ export class CreditDebitComponent implements OnInit {
     private route: ActivatedRoute,
     private playerService: PlayerService,
     public toast: ToastComponent,
+    private authService: UserAuthService
   ) {  }
 
   ngOnInit() {

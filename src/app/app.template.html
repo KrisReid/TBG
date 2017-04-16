@@ -13,20 +13,20 @@
       <!-- Could also use 'nav nav-pills' -->
       <ul class="nav navbar-nav navbar-right collapse navbar-collapse" data-toggle="collapse" data-target=".navbar-collapse">
         <li>
-          <a routerLink="/gameview" routerLinkActive="active">All Games</a>
+          <a *ngIf="authService.loggedInUser == 'Admin'" routerLink="/gameview" routerLinkActive="active">All Games</a>
           <!-- <a data-toggle="collapse" data-target=".navbar-collapse"></a> -->
         </li>
         <li>
           <a routerLink="/play" routerLinkActive="active">Play!</a>
         </li>
         <li>
-          <a routerLink="/create" routerLinkActive="active">Create a game</a>
+          <a *ngIf="authService.loggedInUser == 'Admin'" routerLink="/create" routerLinkActive="active">Create a game</a>
         </li>
         <li>
-          <a routerLink="/creditdebit" routerLinkActive="active">Credit / Debit</a>
+          <a *ngIf="authService.loggedInUser == 'Admin'" routerLink="/creditdebit" routerLinkActive="active">Admin Credit / Debit</a>
         </li>
         <li>
-          <a routerLink="/creditdebitview" routerLinkActive="active">Credit / Debit view</a>
+          <a routerLink="/creditdebitview" routerLinkActive="active">Credit / Debit</a>
         </li>
         <li>
           <!-- <a routerLink="/login" routerLinkActive="active">Login</a> -->
