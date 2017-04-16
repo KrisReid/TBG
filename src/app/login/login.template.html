@@ -25,6 +25,27 @@
       (click)="Signup()">
       Sign Up
     </button>
+
+    <button class="btn btn-default"
+      (click)="login('User')"
+      [disabled]="authService.loggedInUser">
+      Login as User
+    </button>
+
+    <button class="btn btn-default"
+      (click)="login('Admin')"
+      [disabled]="authService.loggedInUser">
+      Login as Admin
+    </button>
+    
+    <button class="btn btn-default"
+      (click)="logout()"
+      [disabled]="!authService.loggedInUser">
+      Logout
+    </button>
+
   </div>
+
+
 
 </div>
