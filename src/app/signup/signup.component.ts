@@ -26,6 +26,7 @@ export class SignupComponent implements OnInit {
   email = new FormControl();
   password = new FormControl();
   terms = new FormControl();
+  admin = new FormControl();
 
   constructor(
     private router: Router,
@@ -44,6 +45,7 @@ export class SignupComponent implements OnInit {
       terms: [this.terms,
         [this.mustBeChecked]],
       debt: 0,
+      admin: false
     });
 
 

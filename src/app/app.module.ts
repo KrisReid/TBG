@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+import {WelcomeModule} from './welcome/welcome.module';
 import {LoginModule} from './login/login.module';
 import {SignupModule} from './signup/signup.module';
 import {CreditDebitModule} from './credit-debit/credit-debit.module';
@@ -16,7 +17,7 @@ import {CreditDebitViewModule} from './credit-debit-view/credit-debit-view.modul
 import { PlayerService } from './services/player.service';
 import { GameService } from './services/game.service';
 
-import {routingModule} from './app.routes';
+import {routingModule, routingProviders} from './app.routes';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {routingModule} from './app.routes';
     BrowserModule,
     FormsModule,
     HttpModule,
+    WelcomeModule,
     LoginModule,
     SignupModule,
     CreditDebitModule,
@@ -38,6 +40,7 @@ import {routingModule} from './app.routes';
   providers: [
     PlayerService,
     GameService,
+    routingProviders
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
