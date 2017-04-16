@@ -6,7 +6,6 @@ let playerSchema = mongoose.Schema({
     password: String,
     debt: Number,
     debtHistory: Array,
-    admin: Boolean,
     terms: Boolean
 });
 

@@ -21,6 +21,7 @@ export class PlayerService {
   }
 
   getPlayerByEmail(email): Observable<any> {
+    console.log("made it here " + email)
     return this.http.get(`/playeremail/${email}`).map(res => res.json());
   }
 
