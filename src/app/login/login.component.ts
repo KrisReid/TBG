@@ -12,7 +12,8 @@ import {PlayerService} from '../services/player.service';
 export class LoginComponent {
 
   player = {
-    admin: false
+    'admin': false,
+    '_id': ''
   }
 
   constructor(
@@ -35,7 +36,6 @@ export class LoginComponent {
 
   SignIn(email) {
     setTimeout(2000);
-
     if(this.player.admin === true) {
       this.authService.login('Admin').then(() => {
         let redirectUrl = this.authService.redirectUrl
@@ -54,15 +54,6 @@ export class LoginComponent {
       })
     }
   }
-
-  // login(userName: string) {
-  //   this.authService.login(userName).then(() => {
-  //     let redirectUrl = this.authService.redirectUrl
-  //       ? this.authService.redirectUrl
-  //       : '/';
-  //     this.router.navigate([redirectUrl]);
-  //   })
-  // }
 
   logout() {
     this.authService.logout().then(() => {

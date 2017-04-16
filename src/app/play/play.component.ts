@@ -54,12 +54,16 @@ export class PlayComponent {
   ) { }
 
   ngOnInit() {
-    // this.authService.player = this.player
-    // console.log(this.player)
+    // this.getLoggedInPlayer(this.authService.player._id);
     this.getGames();
     this.getPlayers();
     this.getPlayerById();
   }
+
+  // getLoggedInPlayer(playerId) {
+  //   this.player._id = playerId
+  //   setTimeout(5000);
+  // }
 
   getGames() {
     this.gameService.getGames().subscribe(
@@ -83,6 +87,7 @@ export class PlayComponent {
   }
 
   getPlayerById() {
+    // this.playerService.getPlayer(this.authService.player._id).subscribe(
     this.playerService.getPlayer(this.player._id).subscribe(
       res => {
         const player = res;
