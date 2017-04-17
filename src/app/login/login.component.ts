@@ -13,9 +13,14 @@ export class LoginComponent {
 
   player = {
     '_id': '',
-    'admin': false
+    'admin': false,
+    'password': ''
   }
 
+  enteredPassword = ''
+  failedPassword = false;
+
+  loggedIn = false;
 
   constructor(
     private router: Router,
@@ -35,40 +40,36 @@ export class LoginComponent {
     setTimeout(2000);
   }
 
-  SignIn(email) {
-    console.log(this.player)
+  signIn(email) {
     this.authService.player = this.player
 
-    if(this.player.admin === true) {
-      this.authService.login('Admin').then(() => {
-        let redirectUrl = this.authService.redirectUrl
-          ? this.authService.redirectUrl
-          : '/create';
-        this.router.navigate([redirectUrl]);
-      })
+    if (this.player.password == this.enteredPassword) {
+      if(this.player.admin === true) {
+        this.failedPassword = false;
+        this.authService.login('Admin').then(() => {
+          let redirectUrl = this.authService.redirectUrl
+            ? this.authService.redirectUrl
+            : '/create';
+          this.router.navigate([redirectUrl]);
+        })
+      }
+      if (this.player.admin === false) {
+        this.failedPassword = false;
+        this.authService.login('User').then(() => {
+          let redirectUrl = this.authService.redirectUrl
+            ? this.authService.redirectUrl
+            : '/play';
+          this.router.navigate([redirectUrl]);
+        })
+      }
     }
-    if (this.player.admin === false) {
-      this.authService.login('User').then(() => {
-        let redirectUrl = this.authService.redirectUrl
-          ? this.authService.redirectUrl
-          : '/play';
-        this.router.navigate([redirectUrl]);
-      })
+    else {
+      console.log("You do not exist or your password is a mis-match")
+      // this.router.navigate(['/']);
+      this.failedPassword = true;
     }
-    // if (this.player.admin == null) {
-    //   console.log("TWAT")
-    //   this.router.navigate(['/welcome']);
-    // }
-  }
 
-  // login(userName: string) {
-  //   this.authService.login(userName).then(() => {
-  //     let redirectUrl = this.authService.redirectUrl
-  //       ? this.authService.redirectUrl
-  //       : '/';
-  //     this.router.navigate([redirectUrl]);
-  //   })
-  // }
+  }
 
   logout() {
     this.authService.logout().then(() => {
