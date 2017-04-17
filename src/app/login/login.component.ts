@@ -15,12 +15,14 @@ export class LoginComponent {
     '_id': '',
     'admin': false,
     'password': ''
+    // 'fullName': ''
   }
 
+  email = ''
   enteredPassword = ''
   failedPassword = false;
 
-  loggedIn = false;
+  // loggedIn = false;
 
   constructor(
     private router: Router,
@@ -35,36 +37,45 @@ export class LoginComponent {
   getPlayer(email) {
     this.playerService.getPlayerByEmail(email).subscribe(
       data => this.player = data,
-      error => console.log(error)
+      error => console.log(error),
     );
     setTimeout(2000);
   }
 
-  signIn(email) {
+  login() {
     this.authService.player = this.player
+    console.log(this.player)
 
-    if (this.player.password == this.enteredPassword) {
-      if(this.player.admin === true) {
-        this.failedPassword = false;
-        this.authService.login('Admin').then(() => {
-          let redirectUrl = this.authService.redirectUrl
-            ? this.authService.redirectUrl
-            : '/create';
-          this.router.navigate([redirectUrl]);
-        })
+    if(this.player._id != ''){
+      if (this.player.password == this.enteredPassword) {
+        if(this.player.admin === true) {
+          this.failedPassword = false;
+          this.authService.login('Admin').then(() => {
+            let redirectUrl = this.authService.redirectUrl
+              ? this.authService.redirectUrl
+              : '/create';
+            this.router.navigate([redirectUrl]);
+          })
+        }
+        if (this.player.admin === false) {
+          this.failedPassword = false;
+          this.authService.login('User').then(() => {
+            let redirectUrl = this.authService.redirectUrl
+              ? this.authService.redirectUrl
+              : '/play';
+            this.router.navigate([redirectUrl]);
+          })
+        }
+        // this.loggedIn = true;
       }
-      if (this.player.admin === false) {
-        this.failedPassword = false;
-        this.authService.login('User').then(() => {
-          let redirectUrl = this.authService.redirectUrl
-            ? this.authService.redirectUrl
-            : '/play';
-          this.router.navigate([redirectUrl]);
-        })
+      else {
+        console.log("You do not exist or your password is a mis-match")
+        // this.router.navigate(['/']);
+        this.failedPassword = true;
       }
     }
     else {
-      console.log("You do not exist or your password is a mis-match")
+      console.log("No such player exists")
       // this.router.navigate(['/']);
       this.failedPassword = true;
     }
@@ -73,7 +84,7 @@ export class LoginComponent {
 
   logout() {
     this.authService.logout().then(() => {
-      //
+    // this.loggedIn = false;
     })
   }
 

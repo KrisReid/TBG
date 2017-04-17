@@ -1,4 +1,4 @@
-<div>
+<!-- <div *ngIf="!loggedIn"> -->
 
   <header class="hidden-xs"></header>
 
@@ -25,9 +25,9 @@
 
       <button class="btn btn-success btn"
         [disabled]="!email"
-        (click)="signIn(email)"
+        (click)="login()"
         [disabled]="authService.loggedInUser">
-        Sign In
+        Login
       </button>
 
       <button class="btn btn-info btn"
@@ -42,11 +42,25 @@
       </button>
 
     </div>
-    <div class="col-sm-12" *ngIf="failedPassword">
-      <p>
-        You have entered an incorrect password.
-      </p>
+
+    <div class="col-sm-12">
+      <span *ngIf="failedPassword" class="help-block">
+        You have entered an invalid email address or password. Please contact Kris or Jamie if your issues persist.
+      </span>
     </div>
+
   </div>
 
-</div>
+<!-- </div> -->
+
+<!-- <div *ngIf="loggedIn">
+  <p>
+    {{player.fullName}}
+  </p>
+
+  <button class="btn btn-default"
+    (click)="logout()"
+    [disabled]="!authService.loggedInUser">
+    Logout
+  </button>
+</div> -->
