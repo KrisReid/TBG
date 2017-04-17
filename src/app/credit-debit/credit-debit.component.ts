@@ -19,10 +19,15 @@ export class CreditDebitComponent implements OnInit {
 
   today = new Date();
 
-  admin = [{
-    '_id': '58d5a59faa81afb332a96641',
-    'fullName': 'Kris Reid'
-  }]
+  // admin = [{
+  //   '_id': '58d5a59faa81afb332a96641',
+  //   'fullName': 'Kris Reid'
+  // }]
+
+  admin = {
+    '_id': '',
+    'fullName': ''
+  }
 
   constructor(
     private router: Router,
@@ -33,7 +38,19 @@ export class CreditDebitComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
+    this.getSignedInPlayerById();
     this.getPlayers();
+  }
+
+  getSignedInPlayerById() {
+    let id = this.authService.player._id
+    this.playerService.getPlayer(id).subscribe(
+      res => {
+        const player = res;
+        this.admin = player;
+      },
+      error => console.log(error),
+    );
   }
 
   getPlayers() {
@@ -62,7 +79,7 @@ export class CreditDebitComponent implements OnInit {
     let debtHistory = {
       date : this.today,
       amount : cred,
-      who : this.admin[0].fullName
+      who : this.admin.fullName
     }
 
     //If there is value in the input, then update the player with the latest values

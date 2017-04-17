@@ -12,14 +12,15 @@ import {PlayerService} from '../services/player.service';
 export class LoginComponent {
 
   player = {
-    admin: false
+    '_id': '',
+    'admin': false
   }
 
 
   constructor(
     private router: Router,
     public authService: UserAuthService,
-    public playerService: PlayerService
+    public playerService: PlayerService,
   ) { }
 
   Signup() {
@@ -36,7 +37,7 @@ export class LoginComponent {
 
   SignIn(email) {
     console.log(this.player)
-    setTimeout(2000);
+    this.authService.player = this.player
 
     if(this.player.admin === true) {
       this.authService.login('Admin').then(() => {
@@ -45,7 +46,6 @@ export class LoginComponent {
           : '/create';
         this.router.navigate([redirectUrl]);
       })
-      this.authService.player = this.player
     }
     if (this.player.admin === false) {
       this.authService.login('User').then(() => {
@@ -55,6 +55,10 @@ export class LoginComponent {
         this.router.navigate([redirectUrl]);
       })
     }
+    // if (this.player.admin == null) {
+    //   console.log("TWAT")
+    //   this.router.navigate(['/welcome']);
+    // }
   }
 
   // login(userName: string) {

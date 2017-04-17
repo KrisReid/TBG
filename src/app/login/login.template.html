@@ -10,7 +10,10 @@
   </div>
   <div class="col-sm-6">
     <label>Password</label>
-    <input #password class="form-control input-md" type="password" id="password" (click)="getPlayer(email)"
+    <input #password class="form-control input-md"
+    type="password"
+    id="password"
+    (keypress)="getPlayer(email)"
     placeholder="Password"
     />
   </div>

@@ -15,13 +15,13 @@ import { ToastComponent } from '../toast/toast.component';
 export class PlayComponent {
 
   // Signed in as Jon
-  player = {
-    '_id': '58d5a720a65377b3c55d4d38'
-  }
-
   // player = {
-  //   '_id': ''
+  //   '_id': '58d5a720a65377b3c55d4d38'
   // }
+
+  player = {
+    '_id': ''
+  }
 
   reservePlayer = { }
   players = []
@@ -54,11 +54,9 @@ export class PlayComponent {
   ) { }
 
   ngOnInit() {
-    // this.authService.player = this.player
-    // console.log(this.player)
+    this.getSignedInPlayerById()
     this.getGames();
     this.getPlayers();
-    this.getPlayerById();
   }
 
   getGames() {
@@ -82,8 +80,10 @@ export class PlayComponent {
     );
   }
 
-  getPlayerById() {
-    this.playerService.getPlayer(this.player._id).subscribe(
+  getSignedInPlayerById() {
+    let id = this.authService.player._id
+    console.log(id)
+    this.playerService.getPlayer(id).subscribe(
       res => {
         const player = res;
         this.player = player;
