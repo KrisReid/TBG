@@ -12,14 +12,22 @@ import {PlayerService} from '../services/player.service';
 export class LoginComponent {
 
   player = {
-    admin: false
+    '_id': '',
+    'admin': false,
+    'password': ''
+    // 'fullName': ''
   }
 
+  email = ''
+  enteredPassword = ''
+  failedPassword = false;
+
+  // loggedIn = false;
 
   constructor(
     private router: Router,
     public authService: UserAuthService,
-    public playerService: PlayerService
+    public playerService: PlayerService,
   ) { }
 
   Signup() {
@@ -29,46 +37,54 @@ export class LoginComponent {
   getPlayer(email) {
     this.playerService.getPlayerByEmail(email).subscribe(
       data => this.player = data,
-      error => console.log(error)
+      error => console.log(error),
     );
     setTimeout(2000);
   }
 
-  SignIn(email) {
+  login() {
+    this.authService.player = this.player
     console.log(this.player)
-    setTimeout(2000);
 
-    if(this.player.admin === true) {
-      this.authService.login('Admin').then(() => {
-        let redirectUrl = this.authService.redirectUrl
-          ? this.authService.redirectUrl
-          : '/create';
-        this.router.navigate([redirectUrl]);
-      })
-      this.authService.player = this.player
+    if(this.player._id != ''){
+      if (this.player.password == this.enteredPassword) {
+        if(this.player.admin === true) {
+          this.failedPassword = false;
+          this.authService.login('Admin').then(() => {
+            let redirectUrl = this.authService.redirectUrl
+              ? this.authService.redirectUrl
+              : '/create';
+            this.router.navigate([redirectUrl]);
+          })
+        }
+        if (this.player.admin === false) {
+          this.failedPassword = false;
+          this.authService.login('User').then(() => {
+            let redirectUrl = this.authService.redirectUrl
+              ? this.authService.redirectUrl
+              : '/play';
+            this.router.navigate([redirectUrl]);
+          })
+        }
+        // this.loggedIn = true;
+      }
+      else {
+        console.log("You do not exist or your password is a mis-match")
+        // this.router.navigate(['/']);
+        this.failedPassword = true;
+      }
     }
-    if (this.player.admin === false) {
-      this.authService.login('User').then(() => {
-        let redirectUrl = this.authService.redirectUrl
-          ? this.authService.redirectUrl
-          : '/play';
-        this.router.navigate([redirectUrl]);
-      })
+    else {
+      console.log("No such player exists")
+      // this.router.navigate(['/']);
+      this.failedPassword = true;
     }
+
   }
-
-  // login(userName: string) {
-  //   this.authService.login(userName).then(() => {
-  //     let redirectUrl = this.authService.redirectUrl
-  //       ? this.authService.redirectUrl
-  //       : '/';
-  //     this.router.navigate([redirectUrl]);
-  //   })
-  // }
 
   logout() {
     this.authService.logout().then(() => {
-      //
+    // this.loggedIn = false;
     })
   }
 

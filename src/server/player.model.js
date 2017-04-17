@@ -6,7 +6,8 @@ let playerSchema = mongoose.Schema({
     password: String,
     debt: Number,
     debtHistory: Array,
-    terms: Boolean
+    terms: Boolean,
+    admin: Boolean
 });
 
 let Player = mongoose.model('Player', playerSchema);

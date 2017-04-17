@@ -100,6 +100,7 @@ export class SignupComponent implements OnInit {
 
   SignUp() {
     this.addPlayerForm.value.debt = 0;
+    this.addPlayerForm.value.admin = false;
 
     this.playerService.postPlayer(this.addPlayerForm.value).subscribe(
       res => {

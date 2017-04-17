@@ -14,3 +14,7 @@ header {
 #loginButtons {
   padding-top: 10px;
 }
+
+.help-block {
+  color: darkred;
+}
