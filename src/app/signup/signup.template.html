@@ -30,7 +30,7 @@
         <div class="form-group"
           [class.has-error]="isInvalid('password')">
           <label for="password">Password</label>
-          <input class="form-control" id="password" formControlName="password" type="password" placeholder="Password">
+          <input class="form-control" id="password" formControlName="password" type="password" placeholder="Password" (keypress)="getPlayer()">
           <span *ngIf="isInvalid('password')" class="help-block">
             {{getValidationMessage('password')}}
           </span>

@@ -28,6 +28,7 @@ export class GameViewComponent {
         data => this.games = data,
         error => console.log(error)
       );
+      console.log(this.games)
     }
 
 
