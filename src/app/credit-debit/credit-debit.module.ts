@@ -5,14 +5,19 @@ import {CreditDebitComponent} from './credit-debit.component';
 import {ContentFilterPipe} from './content-filter.pipe';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-// import { ToastModule } from '../toast/toast.module';
-import { ToastComponent } from '../toast/toast.component';
+import { ToastrService } from 'toastr-ng2';
+
 
 @NgModule({
-  imports: [BrowserModule],
-  declarations: [CreditDebitComponent, ContentFilterPipe, ToastComponent],
+  imports: [
+    BrowserModule
+  ],
+  declarations: [
+    CreditDebitComponent,
+    ContentFilterPipe,
+  ],
   providers: [
-    ToastComponent
+    ToastrService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -4,7 +4,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {PlayerService} from '../services/player.service';
 import { UserAuthService } from '../services/user-auth.service';
 
-import { ToastComponent } from '../toast/toast.component';
+import { ToastrService } from 'toastr-ng2';
 
 @Component({
   selector: 'credit-debit',
@@ -19,11 +19,6 @@ export class CreditDebitComponent implements OnInit {
 
   today = new Date();
 
-  // admin = [{
-  //   '_id': '58d5a59faa81afb332a96641',
-  //   'fullName': 'Kris Reid'
-  // }]
-
   admin = {
     '_id': '',
     'fullName': ''
@@ -33,8 +28,8 @@ export class CreditDebitComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private playerService: PlayerService,
-    public toast: ToastComponent,
-    private authService: UserAuthService
+    private authService: UserAuthService,
+    private toastrService: ToastrService
   ) {  }
 
   ngOnInit() {
@@ -91,7 +86,7 @@ export class CreditDebitComponent implements OnInit {
       this.playerService.updatePlayer(player).subscribe(
         res => {
           this.player = player;
-          this.toast.setMessage('Credit / Debit updated successfully', 'success');
+          this.toastrService.success('Credit / Debit updated successfully', 'Success!');
         },
         error => console.log(error)
       );
@@ -101,7 +96,7 @@ export class CreditDebitComponent implements OnInit {
     }
     //If it isn't a number then send the danger message
     else {
-      this.toast.setMessage('No data has been populated', 'danger');
+      this.toastrService.error('No data has been populated', 'Error!');
     }
   }
 
