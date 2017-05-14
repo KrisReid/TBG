@@ -19,6 +19,10 @@ export class SignupComponent implements OnInit {
   players = [];
   player = {};
 
+  existingPlayer = {
+    'email': ''
+  }
+
   submitted = false;
 
   addPlayerForm: FormGroup;
@@ -98,18 +102,33 @@ export class SignupComponent implements OnInit {
     }
   };
 
-  SignUp() {
-    this.addPlayerForm.value.debt = 0;
-    this.addPlayerForm.value.admin = false;
-
-    this.playerService.postPlayer(this.addPlayerForm.value).subscribe(
-      res => {
-        const newPlayer = res.json();
-        this.players.push(newPlayer);
-        this.submitted = true;
-      },
-      error => console.log(error)
+  getPlayer() {
+    this.playerService.getPlayerByEmail(this.addPlayerForm.value.email).subscribe(
+      data => this.existingPlayer = data,
+      error => console.log(error),
     );
+    setTimeout(2000);
+  }
+
+  SignUp() {
+
+    if(this.existingPlayer.email == this.addPlayerForm.value.email) {
+      console.log("Email address already exists ")
+    }
+    else{
+      this.addPlayerForm.value.debt = 0;
+      this.addPlayerForm.value.admin = false;
+
+      this.playerService.postPlayer(this.addPlayerForm.value).subscribe(
+        res => {
+          const newPlayer = res.json();
+          this.players.push(newPlayer);
+          this.submitted = true;
+        },
+        error => console.log(error)
+      );
+    }
+
   }
 
   Cancel() {
