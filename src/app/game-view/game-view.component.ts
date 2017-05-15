@@ -30,5 +30,16 @@ export class GameViewComponent {
       );
     }
 
+    deleteGame(game) {
+      console.log("Button Deleted");
+      this.gameService.deleteGame(game).subscribe(
+        res => {
+          const pos = this.games.map(elem => { return elem._id; }).indexOf(game._id);
+          this.games.splice(pos, 1);
+        },
+        error => console.log(error)
+      );
+    }
+
 
 }
