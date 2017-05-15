@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 
 import {GameService} from '../services/game.service';
 import { UserAuthService } from '../services/user-auth.service';
+import { ToastrService } from 'toastr-ng2';
 
 @Component({
   selector: 'create',
@@ -13,7 +14,8 @@ export class CreateGameComponent {
   constructor(
     private router: Router,
     private gameService: GameService,
-    private authService: UserAuthService
+    private authService: UserAuthService,
+    private toastrService: ToastrService
   ) {}
 
   games = []
@@ -46,10 +48,11 @@ export class CreateGameComponent {
       res => {
         const newGame = res.json();
         this.games.push(newGame);
+        this.toastrService.success('Game has been created', 'Success!');
+        this.router.navigate(['/play'])
       },
       error => console.log(error)
     );
-    this.router.navigate(['/play'])
 
   }
 

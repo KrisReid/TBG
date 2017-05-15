@@ -78,6 +78,7 @@ export class PlayComponent {
       },
       error => console.log(error),
     );
+    console.log(this.players)
   }
 
   getSignedInPlayerById() {

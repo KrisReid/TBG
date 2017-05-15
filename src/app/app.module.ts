@@ -17,6 +17,9 @@ import {CreditDebitViewModule} from './credit-debit-view/credit-debit-view.modul
 import { PlayerService } from './services/player.service';
 import { GameService } from './services/game.service';
 
+// import { ToastModule } from './toast/toast.module';
+import { ToastrModule } from 'toastr-ng2';
+
 import {routingModule, routingProviders} from './app.routes';
 
 @NgModule({
@@ -35,6 +38,8 @@ import {routingModule, routingProviders} from './app.routes';
     GameViewModule,
     PlayModule,
     CreditDebitViewModule,
+    // ToastModule,
+    ToastrModule.forRoot(),
     routingModule
   ],
   providers: [
