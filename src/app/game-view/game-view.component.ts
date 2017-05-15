@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 
 import {GameService} from '../services/game.service';
 import { UserAuthService } from '../services/user-auth.service';
+import { ToastrService } from 'toastr-ng2';
 
 @Component({
     selector: 'gameview',
@@ -16,7 +17,8 @@ export class GameViewComponent {
     constructor(
         private router: Router,
         private gameService: GameService,
-        private authService: UserAuthService
+        private authService: UserAuthService,
+        private toastrService: ToastrService
     ) {}
 
     ngOnInit() {
@@ -37,6 +39,7 @@ export class GameViewComponent {
         res => {
           const pos = this.games.map(elem => { return elem._id; }).indexOf(game._id);
           this.games.splice(pos, 1);
+          this.toastrService.success('Game has been deleted', 'Success!');
         },
         error => console.log(error)
       );
