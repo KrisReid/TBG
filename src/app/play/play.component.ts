@@ -14,11 +14,6 @@ import { ToastComponent } from '../toast/toast.component';
 })
 export class PlayComponent {
 
-  // Signed in as Jon
-  // player = {
-  //   '_id': '58d5a720a65377b3c55d4d38'
-  // }
-
   player = {
     '_id': ''
   }
@@ -78,12 +73,11 @@ export class PlayComponent {
       },
       error => console.log(error),
     );
-    console.log(this.players)
   }
 
   getSignedInPlayerById() {
     let id = this.authService.player._id
-    console.log(id)
+
     this.playerService.getPlayer(id).subscribe(
       res => {
         const player = res;
@@ -226,7 +220,7 @@ export class PlayComponent {
           game.reserves.shift(game.reserves[0]);
         }
         else {
-          console.log("There are no reserves to promote")
+          // console.log("There are no reserves to promote")
         }
       }
     }
@@ -250,7 +244,7 @@ export class PlayComponent {
           game.reserves.shift(game.reserves[0]);
         }
         else {
-          console.log("There are no reserves to promote")
+          // console.log("There are no reserves to promote")
         }
       }
     }
@@ -260,7 +254,7 @@ export class PlayComponent {
       var index = this.reserveIdArray.indexOf(this.player._id);
       if (this.player._id == reserves._id){
         game.reserves.splice(index, 1);
-        console.log("Player removed from the reserves list");
+        // console.log("Player removed from the reserves list");
       }
     }
   }

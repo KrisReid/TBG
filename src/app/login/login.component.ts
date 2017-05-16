@@ -11,8 +11,6 @@ import {PlayerService} from '../services/player.service';
 })
 export class LoginComponent {
 
-
-
   player = {
     '_id': '',
     'admin': false,
@@ -68,15 +66,12 @@ export class LoginComponent {
         }
       }
       else {
-        console.log("You do not exist or your password is a mis-match")
         this.failedPassword = true;
       }
     }
     else {
-      console.log("No such player exists")
       this.failedPassword = true;
     }
-
   }
 
   logout() {

@@ -81,8 +81,6 @@ export class CreditDebitComponent implements OnInit {
     if (cred > 0 || cred < 0){
       player.debtHistory.push(debtHistory);
 
-      console.log(player);
-
       this.playerService.updatePlayer(player).subscribe(
         res => {
           this.player = player;

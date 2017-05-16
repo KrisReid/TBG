@@ -30,11 +30,9 @@ export class GameViewComponent {
         data => this.games = data,
         error => console.log(error)
       );
-      console.log(this.games)
     }
 
     deleteGame(game) {
-      console.log("Button Deleted");
       this.gameService.deleteGame(game).subscribe(
         res => {
           const pos = this.games.map(elem => { return elem._id; }).indexOf(game._id);

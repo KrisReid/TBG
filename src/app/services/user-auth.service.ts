@@ -13,7 +13,6 @@ export class UserAuthService{
   }
 
   login(userName: string) {
-    console.log(this.player._id + " - From within the user-auth.service")
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         this.loggedInUser = userName;

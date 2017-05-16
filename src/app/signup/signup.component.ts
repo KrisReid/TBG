@@ -74,7 +74,6 @@ export class SignupComponent implements OnInit {
     let message = '';
     let control = this.addPlayerForm.get(controlName);
     if (control) {
-      console.log(control);
       let messages = this.validationMessages[controlName];
       if (messages && control.errors) {
         for (const key in control.errors) {
@@ -113,7 +112,7 @@ export class SignupComponent implements OnInit {
   SignUp() {
 
     if(this.existingPlayer.email == this.addPlayerForm.value.email) {
-      console.log("Email address already exists ")
+      // console.log("Email address already exists ")
     }
     else{
       this.addPlayerForm.value.debt = 0;
