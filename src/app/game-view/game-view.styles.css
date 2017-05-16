@@ -22,7 +22,16 @@
   padding-left: 10px;
 }
 
+#break {
+  border-bottom: 1px solid darkgray;
+}
+
 #time {
   border-bottom: 1px solid darkgray;
   padding-bottom: 10px;
+}
+
+#deleteButton {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

@@ -8,7 +8,8 @@ export class UserAuthService{
   redirectUrl: string;
 
   player = {
-    '_id':''
+    '_id':'',
+    'fullName':''
   }
 
   login(userName: string) {

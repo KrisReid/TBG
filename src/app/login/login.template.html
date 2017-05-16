@@ -1,4 +1,4 @@
-<!-- <div *ngIf="!loggedIn"> -->
+<div *ngIf="!authService.loggedInUser">
 
   <header class="hidden-xs"></header>
 
@@ -51,16 +51,17 @@
 
   </div>
 
-<!-- </div> -->
+</div>
 
-<!-- <div *ngIf="loggedIn">
-  <p>
-    {{player.fullName}}
-  </p>
+
+
+<div *ngIf="authService.loggedInUser">
+
+  <p>Please sign out of the app when you are finished to protect your personal data.</p>
 
   <button class="btn btn-default"
     (click)="logout()"
     [disabled]="!authService.loggedInUser">
     Logout
   </button>
-</div> -->
+</div>

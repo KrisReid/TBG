@@ -45,13 +45,6 @@ db.once('open', function() {
     })
   });
 
-  // app.get('/playeremail/:email', function(req, res) {
-  //   Player.findOne({email: req.params.email}, function(err, obj) {
-  //     if(err) return console.error(err);
-  //     res.json(obj);
-  //   })
-  // });
-
   app.get('/playeremail/:email', function(req, res) {
     Player.findOne({email: req.params.email}, function(err, obj) {
       if(err) return console.error(err);
@@ -97,6 +90,21 @@ db.once('open', function() {
       res.sendStatus(200);
     })
   });
+
+  // update = (req, res) => {
+  //   this.model.findOneAndUpdate({ _id: req.params.id }, req.body, (err) => {
+  //     if (err) { return console.error(err); }
+  //     res.sendStatus(200);
+  //   });
+  // }
+
+  app.delete('/game/:id', function(req, res) {
+    Game.findOneAndRemove({ _id: req.params.id }, (err) => {
+      if (err) { return console.error(err); }
+      res.sendStatus(200);
+    });
+  });
+
 
   // all other routes are handled by Angular
   app.get('/*', function(req, res) {

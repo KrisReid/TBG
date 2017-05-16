@@ -31,7 +31,8 @@
         <li>
           <!-- <a routerLink="/login" routerLinkActive="active">Login</a> -->
           <a routerLink="/login" routerLinkActive="active">
-            {{authService.loggedInUser ? authService.loggedInUser : 'Login' }}
+            <!-- {{authService.loggedInUser ? authService.loggedInUser : 'Login' }} -->
+            {{authService.loggedInUser ? authService.player.fullName : 'Login' }}
           </a>
         </li>
       </ul>
