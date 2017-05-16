@@ -17,6 +17,11 @@
         <div *ngFor="let reserves of game.reserves">
           <p id="player">{{reserves.fullName}}</p>
         </div>
+        <div id="break"></div>
+        <button class="btn btn-danger" id="deleteButton"
+        (click)="deleteGame(game)">
+        Delete Game
+        </button>
       </div>
     </div>
   </div>

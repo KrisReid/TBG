@@ -11,18 +11,18 @@ import {PlayerService} from '../services/player.service';
 })
 export class LoginComponent {
 
+
+
   player = {
     '_id': '',
     'admin': false,
-    'password': ''
-    // 'fullName': ''
+    'password': '',
+    'fullName': ''
   }
 
   email = ''
   enteredPassword = ''
   failedPassword = false;
-
-  // loggedIn = false;
 
   constructor(
     private router: Router,
@@ -43,8 +43,8 @@ export class LoginComponent {
   }
 
   login() {
+
     this.authService.player = this.player
-    console.log(this.player)
 
     if(this.player._id != ''){
       if (this.player.password == this.enteredPassword) {
@@ -66,17 +66,14 @@ export class LoginComponent {
             this.router.navigate([redirectUrl]);
           })
         }
-        // this.loggedIn = true;
       }
       else {
         console.log("You do not exist or your password is a mis-match")
-        // this.router.navigate(['/']);
         this.failedPassword = true;
       }
     }
     else {
       console.log("No such player exists")
-      // this.router.navigate(['/']);
       this.failedPassword = true;
     }
 
@@ -84,7 +81,6 @@ export class LoginComponent {
 
   logout() {
     this.authService.logout().then(() => {
-    // this.loggedIn = false;
     })
   }
 

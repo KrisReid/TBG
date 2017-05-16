@@ -25,4 +25,8 @@ export class GameService {
     return this.http.put(`/game/${game._id}`, JSON.stringify(game), this.options);
   }
 
+  deleteGame(game): Observable<any> {
+    return this.http.delete(`/game/${game._id}`, this.options)
+  }
+
 }
