@@ -98,11 +98,14 @@
 
       </div>
 
-    <button class="btn btn-primary" type="submit"
-      [disabled]="entryForm.invalid">
-      <!-- (click)="Create()"> -->
-      Create Game
-    </button>
+      <div class="row">
+        <div class="col-sm-offset-5 col-sm-2 text-center">
+          <button class="btn btn-primary" type="submit"
+            [disabled]="entryForm.invalid">
+            Create Game
+          </button>
+        </div>
+    </div>
 
   </form>
 </div>

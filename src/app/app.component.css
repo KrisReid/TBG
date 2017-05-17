@@ -1,3 +1,8 @@
 .container-fluid {
     padding-top: 80px;
 }
+
+.navbar-default .navbar-nav>li>a:hover {
+  transition: background-color 1.0s;
+  color: #383838;
+}
